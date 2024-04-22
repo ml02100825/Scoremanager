@@ -17,7 +17,7 @@ public class SubjectDAO extends DAO{
 
 	public List<Subject> filter(School school) throws Exception {
 		 String baseSql = " select * from subject where school_cd=? ";
-		 Subject subject = new Subject();
+
 		// リストを初期化
 		List<Subject> list = new ArrayList<>();
 		// コネクションを確率
@@ -43,6 +43,7 @@ public class SubjectDAO extends DAO{
 			SchoolDAO sDao = new SchoolDAO();
 			// リストへの格納処理を実行
 			if(rSet.next()){
+				Subject subject = new Subject();
 				subject.setCd(rSet.getString("cd"));
 				subject.setSchool(sDao.get(rSet.getString("school_cd")));
 				subject.setName(rSet.getString("name"));
@@ -77,11 +78,12 @@ public class SubjectDAO extends DAO{
 	}
 
 	public Subject get(String cd, School school) throws Exception{
-		Subject subject = new Subject();
+
 
 		Connection  connection = getConnection();
 
 		PreparedStatement statement = null;
+		Subject subject = new Subject();
 
 		try{
 
