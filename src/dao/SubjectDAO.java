@@ -83,11 +83,12 @@ public class SubjectDAO extends DAO{
 		Connection  connection = getConnection();
 
 		PreparedStatement statement = null;
+		Subject subject = new Subject();
 
 		try{
 
 			statement = connection.prepareStatement("select * from subject where cd = ? and school_cd = ?");
-			Subject subject = new Subject();
+
 			statement.setString(1, cd);
 			statement.setString(2, school.getCd());
 
