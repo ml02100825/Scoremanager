@@ -40,10 +40,11 @@ public class SubjectDAO extends DAO{
 			// プライベートステートメントを実行
 			rSet = statement.executeQuery();
 
+			SchoolDAO sDao = new SchoolDAO();
 			// リストへの格納処理を実行
 			if(rSet.next()){
 				subject.setCd(rSet.getString("cd"));
-				subject.setSchool(school);
+				subject.setSchool(sDao.get(rSet.getString("school_cd")));
 				subject.setName(rSet.getString("name"));
 				list.add(subject);
 			}
