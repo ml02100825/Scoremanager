@@ -7,10 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.security.auth.Subject;
-
 import bean.School;
-import bean.Student;
+import bean.Subject;
 
 
 public class SubjectDAO extends DAO{
@@ -86,9 +84,10 @@ public class SubjectDAO extends DAO{
 
 		try{
 
-			statement = connection.prepareStatement("select * from subject where cd = ? ");
+			statement = connection.prepareStatement("select * from subject where cd = ? and school_cd = ?");
 
 			statement.setString(1, cd);
+			statement.setString(2, school.getCd());
 
 			ResultSet rSet = statement.executeQuery();
 
@@ -99,7 +98,7 @@ public class SubjectDAO extends DAO{
 				subject.setCd(rSet.getString("cd"));
 				subject.setName(rSet.getString("name"));
 
-				subject.setSchool(school);
+				subject.setSchool(sDao.get(rSet.getString("school_cd")));
 
 
 			}else{
@@ -130,13 +129,16 @@ public class SubjectDAO extends DAO{
 
 	public boolean save(Subject subject)throws Exception{
 		Connection connection  = getConnection();
+		School school = new School();
+		SchoolDAO sDao = new SchoolDAO();
 
+		school = sDao.get(subject.getSchool().getCd());
 		PreparedStatement statement  = null;
 
 		int  count = 0;
 		try{
 
-			Student old = get(subject.getCd());
+			Subject old = get(subject.getCd(), 	school);
 			if (old == null){
 				statement = connection.prepareStatement(
 						"insert into subject(cd, name, school_cd) values(?, ? , ?)");
