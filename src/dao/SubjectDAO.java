@@ -42,7 +42,7 @@ public class SubjectDAO extends DAO{
 
 			SchoolDAO sDao = new SchoolDAO();
 			// リストへの格納処理を実行
-			if(rSet.next()){
+			while(rSet.next()){
 				Subject subject = new Subject();
 				subject.setCd(rSet.getString("cd"));
 				subject.setSchool(sDao.get(rSet.getString("school_cd")));
