@@ -1,5 +1,8 @@
 package scoremanager.main;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -24,11 +27,13 @@ public class SubjectCreateExecuteAction extends Action {
         subject.setCd(subjectCode);
         Subject s = subDao.get(subjectCode,teacher.getSchool());
         if (s!=null) {
-            request.setAttribute("message", "科目が正常に作成されました。");
-            request.getRequestDispatcher("SubjectCreateSuccess.jsp").forward(request, response);
+        	List<String>errors1=new ArrayList<>();
+			errors1.add("科目コードが重複しています");
+			request.setAttribute("errors1",errors1);
+            request.getRequestDispatcher("subject_create.jsp").forward(request, response);
         } else {
-            request.setAttribute("error", "科目の作成に失敗しました。");
-            request.getRequestDispatcher("SubjectCreateError.jsp").forward(request, response);
+        	subDao.save(subject);
+			request.getRequestDispatcher("subject_create_done.jsp").forward(request, response);
         }
     }
 }

@@ -19,9 +19,9 @@
 					style="width: 100%;">
 			</div>
 			<div style="text-align">
-				<c:if test="${not empty errors }">
-					<c:forEach var="errors" items="${errors }">
-						<span style="color:#ffd9a3;">${errors }</span>
+				<c:if test="${not empty errors1 }">
+					<c:forEach var="errors" items="${errors1 }">
+						<span style="color:#ffd9a3;">${errors1 }</span>
 					</c:forEach>
 					<div style="margin-bottom:10px;"></div>
 				</c:if>
@@ -36,14 +36,6 @@
 				<label>科目名</label> <input type="text" name="name" value="${name }"
 					placeholder="科目名を入力してください" maxlength="20" required
 					style="width: 100%;">
-			</div>
-			<div style="text-align">
-				<c:if test="${not empty errors2 }">
-					<c:forEach var="errors2" items="${errors2 }">
-						<span style="color:#ffd9a3;">${errors2 }</span>
-					</c:forEach>
-					<div style="margin-bottom:10px;"></div>
-				</c:if>
 			</div>
 			<div class="col-4 " style="width: 100%; margin-bottom: 10px;">
 				<input type="submit" name="end" value="登録"
