@@ -14,21 +14,21 @@ public class Test implements Serializable {
 	public Student getStudent() {
 		return student;
 	}
-	public void setstudent(Student student) {
+	public void setStudent(Student student) {
 		this.student = student;
 	}
 
-	public String getclassNum() {
+	public String getClassNum() {
 		return classNum;
 	}
-	public void setclassNum(String classNum) {
+	public void setClassNum(String classNum) {
 		this.classNum = classNum;
 	}
 
 	public Subject getSubject() {
 		return subject;
 	}
-	public void setsubject(Subject subject) {
+	public void setSubject(Subject subject) {
 		this.subject = subject;
 	}
 
