@@ -25,6 +25,8 @@
 					</c:forEach>
 					<div style="margin-bottom:10px;"></div>
 				</c:if>
+			</div>
+			<div>
 				<c:if test="${not empty errors2 }">
 					<c:forEach var="errors2" items="${errors2 }">
 						<span style="color:#ffd9a3;">${errors2 }</span>
