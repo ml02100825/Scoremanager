@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.Subject;
+import bean.Teacher;
 import dao.SubjectDAO;
 import tool.Action;
 
@@ -19,6 +20,7 @@ public class SubjectUpdateExecuteAction extends Action {
 		SubjectDAO sDao = new SubjectDAO();			// 学生DAO
 		Subject subject = new Subject();
 		boolean update = false;
+		Teacher teacher = (Teacher)session.getAttribute("user");
 
 		// リクエストパラメーターの取得
 		cd = request.getParameter("f1");
@@ -26,6 +28,7 @@ public class SubjectUpdateExecuteAction extends Action {
 
 		subject.setCd(cd);
 		subject.setName(name);
+		subject.setSchool(teacher.getSchool());
 
 		update  = sDao.save(subject);
 

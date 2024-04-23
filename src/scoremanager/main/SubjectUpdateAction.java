@@ -4,8 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bean.School;
 import bean.Subject;
+import bean.Teacher;
 import dao.SubjectDAO;
 import tool.Action;
 
@@ -16,10 +16,11 @@ public class SubjectUpdateAction extends Action {
 
 		HttpSession session = request.getSession();
 		String cd = request.getParameter("cd");
-		School school = (School) session.getAttribute("school");
+		// セッションからログインしている教員情報を取得
+		Teacher teacher = (Teacher)session.getAttribute("user");
 		SubjectDAO sDao = new SubjectDAO();
 
-		Subject subject = sDao.get(cd, school);
+		Subject subject = sDao.get(cd, teacher.getSchool());
 
 		request.setAttribute("subject", subject);
 
