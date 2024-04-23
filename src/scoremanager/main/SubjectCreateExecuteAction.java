@@ -27,6 +27,16 @@ public class SubjectCreateExecuteAction extends Action {
         subject.setCd(subjectCode);
         subject.setSchool(teacher.getSchool());
         Subject s = subDao.get(subjectCode,teacher.getSchool());
+
+        List<String> errors2 = new ArrayList<>();
+
+        // 科目コードが3文字であるかどうかをチェック
+        if (subjectCode == null || subjectCode.length() != 3) {
+            errors2.add("科目コードは3文字で入力してください");
+            request.setAttribute("errors2",errors2);
+            request.getRequestDispatcher("subject_create.jsp").forward(request, response);
+        }
+
         if (s!=null) {
         	List<String>errors1=new ArrayList<>();
 			errors1.add("科目コードが重複しています");
