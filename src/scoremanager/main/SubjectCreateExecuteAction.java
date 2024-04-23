@@ -19,8 +19,8 @@ public class SubjectCreateExecuteAction extends Action {
     	HttpSession session = request.getSession();
     	Teacher teacher = (Teacher)session.getAttribute("user");
     	SubjectDAO subDao = new SubjectDAO();
-        String subjectName = request.getParameter("subject_name");
-        String subjectCode = request.getParameter("subject_code");
+        String subjectName = request.getParameter("㏅");
+        String subjectCode = request.getParameter("name");
 
         Subject subject = new Subject();
         subject.setName(subjectName);
