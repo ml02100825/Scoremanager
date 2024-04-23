@@ -1,8 +1,10 @@
+// 科目一覧のアクションサーブレット
 /**
  *
  */
 /**
- * @author h_mitukawa
+
+* @author h_mitukawa
  *
  */
 package scoremanager.main;
