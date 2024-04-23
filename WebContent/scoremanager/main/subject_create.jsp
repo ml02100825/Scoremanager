@@ -20,7 +20,7 @@
 			</div>
 			<div style="text-align">
 				<c:if test="${not empty errors1 }">
-					<c:forEach var="errors" items="${errors1 }">
+					<c:forEach var="errors1" items="${errors1 }">
 						<span style="color:#ffd9a3;">${errors1 }</span>
 					</c:forEach>
 					<div style="margin-bottom:10px;"></div>
