@@ -18,4 +18,3 @@
 		<a href="SubjectList.action">科目一覧</a>
 	</c:param>
 </c:import>
-
