@@ -42,7 +42,12 @@ public class SubjectCreateExecuteAction extends Action {
 			errors1.add("科目コードが重複しています");
 			request.setAttribute("errors1",errors1);
             request.getRequestDispatcher("subject_create.jsp").forward(request, response);
-        } else {
+        }// 科目コードが3文字であるかどうかをチェック
+        else if (subjectCode == null || subjectCode.length() != 3) {
+            errors2.add("科目コードは3文字で入力してください");
+            request.setAttribute("errors2",errors2);
+            request.getRequestDispatcher("subject_create.jsp").forward(request, response);
+        }else {
         	subDao.save(subject);
 			request.getRequestDispatcher("subject_create_done.jsp").forward(request, response);
         }
