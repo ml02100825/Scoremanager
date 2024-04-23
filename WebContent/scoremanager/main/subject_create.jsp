@@ -51,7 +51,7 @@
 			</div>
 			</form>
 			<div>
-				<a href="SubjectCreate.action">戻る</a>
+				<a href="SubjectList.action">戻る</a>
 			</div>
 		</div>
 	</c:param>
