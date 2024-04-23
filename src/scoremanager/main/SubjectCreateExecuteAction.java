@@ -25,6 +25,7 @@ public class SubjectCreateExecuteAction extends Action {
         Subject subject = new Subject();
         subject.setName(subjectName);
         subject.setCd(subjectCode);
+        subject.setSchool(teacher.getSchool());
         Subject s = subDao.get(subjectCode,teacher.getSchool());
         if (s!=null) {
         	List<String>errors1=new ArrayList<>();
