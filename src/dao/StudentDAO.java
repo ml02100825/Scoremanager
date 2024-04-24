@@ -14,7 +14,7 @@ import bean.Student;
 public class StudentDAO extends DAO{
 	private String baseSql = " select * from student where school_cd=? and is_active = true ";
 	// フィルター後のリストへの格納処理をするメソッド
-	public List<Student> postFilter(ResultSet rSet, School school) throws Exception {
+	private List<Student> postFilter(ResultSet rSet, School school) throws Exception {
 		// リストの初期化
 		List<Student> list = new ArrayList<>();
 		try{
