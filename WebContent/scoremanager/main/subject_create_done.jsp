@@ -12,8 +12,8 @@
 			<h2 class="h2 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4"
 				style="text-align: center;">科目情報登録</h2>
 			<p>登録が完了しました</p>
-			<a href="StudentCreate.action">戻る</a>
-			<a href="SbujectList.action">科目一覧</a>
+			<a href="SubjectCreate.action">戻る</a>
+			<a href="SubjectList.action">科目一覧</a>
 		</div>
 	</c:param>
 </c:import>

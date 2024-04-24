@@ -1,5 +1,8 @@
 package scoremanager.main;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -16,19 +19,31 @@ public class SubjectCreateExecuteAction extends Action {
     	HttpSession session = request.getSession();
     	Teacher teacher = (Teacher)session.getAttribute("user");
     	SubjectDAO subDao = new SubjectDAO();
-        String subjectName = request.getParameter("subject_name");
-        String subjectCode = request.getParameter("subject_code");
+        String subjectName = request.getParameter("name");
+        String subjectCode = request.getParameter("cd");
 
         Subject subject = new Subject();
         subject.setName(subjectName);
         subject.setCd(subjectCode);
+        subject.setSchool(teacher.getSchool());
         Subject s = subDao.get(subjectCode,teacher.getSchool());
+
+
+
         if (s!=null) {
-            request.setAttribute("message", "科目が正常に作成されました。");
-            request.getRequestDispatcher("SubjectCreateSuccess.jsp").forward(request, response);
-        } else {
-            request.setAttribute("error", "科目の作成に失敗しました。");
-            request.getRequestDispatcher("SubjectCreateError.jsp").forward(request, response);
+        	List<String>errors1=new ArrayList<>();
+			errors1.add("科目コードが重複しています");
+			request.setAttribute("errors1",errors1);
+            request.getRequestDispatcher("subject_create.jsp").forward(request, response);
+        }// 科目コードが3文字であるかどうかをチェック
+        else if (subjectCode == null || subjectCode.length() != 3) {
+        	List<String> errors2 = new ArrayList<>();
+            errors2.add("科目コードは3文字で入力してください");
+            request.setAttribute("errors2",errors2);
+            request.getRequestDispatcher("subject_create.jsp").forward(request, response);
+        }else {
+        	subDao.save(subject);
+			request.getRequestDispatcher("subject_create_done.jsp").forward(request, response);
         }
     }
 }

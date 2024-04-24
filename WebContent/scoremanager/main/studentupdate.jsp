@@ -16,7 +16,7 @@
 			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">学生情報変更</h2>
 			<form action="StudentUpdateexecute.action" method="get">
 				<div class="text-align:">
-					<label class="form-label" for="student-f1-select">入学年度 </label><br>
+					<label class="form-label" for="student-f1-select">入学年度</label><br>
 					<input type="text"  name = "f1" value="${student.getEntyear()}"
 						readonly style="width: 100%; height: 40px; margin-bottom: 10px; border: none;">
 				</div>
@@ -57,13 +57,12 @@
 							</button>
 						</div>
 						<div class="mt-2 text-warning"><c:out value="${errors}" /></div>
-							<div class="mt-2 text-warning">
-								<ul>
-									<c:forEach items="${error}" var="error">
-										<p>${error}</p>
-									</c:forEach>
-								</ul>
-							</div>
+						<div class="mt-2 text-warning">
+							<ul>
+								<c:forEach items="${error}" var="error">
+									<p>${error}</p>
+								</c:forEach>
+							</ul>
 						</div>
 					</div>
 				</div>
