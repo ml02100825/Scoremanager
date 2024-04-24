@@ -44,6 +44,8 @@
 							<c:if test="${!empty f3}">checked</c:if> />
 						</label>
 					</div>
+
+
 					<div class="col-2 text-center">
 						<button class="btn btn-secondary" id="filter-button" >絞込み</button>
 					</div>

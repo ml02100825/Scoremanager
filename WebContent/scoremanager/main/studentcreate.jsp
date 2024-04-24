@@ -16,6 +16,7 @@
 			<form action="StudentCreateexecute.action" method="get">
 				<div style="text-align:">
 					<label class="form-label" for="student-f1-select">入学年度 </label>
+					
 					<select class="form-select " id="student-f1-select" name="f1" style="margin-bottom: 10px;">
 						<option value="0">--------</option>
 						<c:forEach var="year" items="${ent_year_set}">
@@ -23,6 +24,7 @@
 							<option value="${year}" <c:if test="${year==f1}">selected</c:if>>${year}</option>
 						</c:forEach>
 					</select>
+					
 					<div class="mt-2 text-warning">${errors.get("f1")}</div>
 				</div>
 				<div class="text-align:">
