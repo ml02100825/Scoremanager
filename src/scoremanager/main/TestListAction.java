@@ -37,6 +37,9 @@ public class TestListAction extends Action{
 		request.setAttribute("class_num_set", list);
 		request.setAttribute("ent_year_set", entYearSet);
 
+		System.out.print(subjects);
+		System.out.print(list);
+		System.out.print(entYearSet);
 		request.getRequestDispatcher("test_list.jsp").forward(request, response);
 	}
 
