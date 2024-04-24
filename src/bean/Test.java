@@ -42,7 +42,7 @@ public class Test implements Serializable {
 	public int getNo () {
 		return no;
 	}
-	public void setno(int no) {
+	public void setNo(int no) {
 		this.no = no;
 	}
 
