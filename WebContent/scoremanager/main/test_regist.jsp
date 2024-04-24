@@ -67,7 +67,7 @@
 		</form>
 	<c:choose>
 		<c:when test="${tests.size()>0}">
-			<div>科目：${subject.name} (${num}回)</div>
+			<div>科目：${sub.name} (${num}回)</div>
 			<form method="post" action="TestRegistExecute.action" >
 			<table class="table table-hover">
 				<tr>

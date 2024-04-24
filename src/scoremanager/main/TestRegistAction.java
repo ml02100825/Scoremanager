@@ -84,7 +84,9 @@ public class TestRegistAction extends Action{
 			//  入学年度とクラス番号を指定
 			request.setAttribute("entYear", entyear);
 			request.setAttribute("subject", subject);
-			request.setAttribute("num", num);
+			request.setAttribute("sub", sub);
+
+			request.setAttribute("num", numStr);
 			request.setAttribute("classnum", classNum);
 			tests = testDao.filter(teacher.getSchool(), entyear, classNum, sub , num );
 			students = sDao.filter(teacher.getSchool(), true);

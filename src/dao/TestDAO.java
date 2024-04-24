@@ -191,7 +191,7 @@ public class TestDAO extends DAO{
 				statement.setInt(4, test.getNo());
 				statement.setString(5, test.getClassNum());
 			}else{
-				statement = connection.prepareStatement("update student set point = ? where student_no = ? and subject_cd = ? and school_cd = ? and no = ?");
+				statement = connection.prepareStatement("update test set point = ? where student_no = ? and subject_cd = ? and school_cd = ? and no = ?");
 
 				statement.setInt(1, test.getPoint());
 				statement.setString(2, test.getStudent().getNo());
@@ -206,23 +206,9 @@ public class TestDAO extends DAO{
 			count =statement.executeUpdate();
 		}catch(Exception e){
 			throw e;
-		}finally{
-			if (statement != null){
-				try{
-					statement.close();
-				} catch (SQLException sqle){
-					throw sqle;
-				}
-			}
-			if (connection != null){
-				try{
-					connection.close();
-				} catch (SQLException sqle){
-					throw sqle;
-				}
-			}
-
 		}
+
+
 		if (count > 0) {
 			return true;
 		}else {
@@ -236,6 +222,7 @@ public class TestDAO extends DAO{
 
 		// コネクションを確率
 		Connection connection = getConnection();
+
 		// プリペアードステートメント
 		PreparedStatement statement  = null;
 		// リザルトセット
@@ -255,8 +242,7 @@ public class TestDAO extends DAO{
 				t = save(list.get(i), connection);
 			}
 
-			// プライベートステートメントを実行
-			rSet = statement.executeQuery();
+
 
 			// リストへの格納処理を実行
 

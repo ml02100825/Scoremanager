@@ -67,7 +67,8 @@ public class TestRegistExecuteAction extends Action{
 		tests = testDao.filter(teacher.getSchool(), entyear, classNum, sub , num );
 		int size = tests.size();
 		for(int i = 0; i < size; i++){
-			String pointStr = request.getParameter("point" + tests.get(i).getStudent().getNo());
+			String pointStr = request.getParameter("point_" + tests.get(i).getStudent().getNo());
+			System.out.print(pointStr);
 			p = Integer.parseInt(pointStr);
 			tests.get(i).setPoint(p);
 		}
