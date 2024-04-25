@@ -86,7 +86,7 @@
 
 		<c:choose>
 			<c:when test="${subjects.size()>0}">
-				<div>氏名：${subjects.name}(${subjects.f4})</div>
+				<div>氏名：${subjects.name}(${f4})</div>
 				<table class="table table-hover">
 					<tr>
 						<th>科目名</th>
@@ -106,7 +106,7 @@
 				</table>
 			</c:when>
 			<c:otherwise>
-				<div>氏名：${subjects.name}(${subjects.f4})</div>
+				<div>氏名：${subjects.name}(${f4})</div>
 				<div>成績情報が存在しませんでした</div>
 			</c:otherwise>
 		</c:choose>
