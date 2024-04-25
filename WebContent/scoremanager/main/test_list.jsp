@@ -54,6 +54,7 @@
 							検索
 						</button>
 					</div>
+					<div class="mt-2 text-warning">${errors.get("f1")}</div>
 				</form>
 
 				<div class="text-align">

@@ -11,7 +11,7 @@
 
 	<c:param name="content">
 		<section class="text-align">
-			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">成績参照（学生）</h2>
+			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">成績参照（科目）</h2>
 			<div class="row border mx-3 mb-3 py-2 align-items-center justify-content-center rounded"
 				id="filter">
 				<form action="TestListSubjectExecute.action" method="get" class="row align-items-center">
@@ -48,6 +48,7 @@
 						</select>
 						<div class="mt-2 text-warning">${errors.get("f3")}</div>
 					</div>
+					<div class="mt-2 text-warning">${errors.get("f5")}</div>
 					<div class="col-2">
 						<button class="btn btn-secondary" id="filter-button"
 							style="background-color: #69727a; border: none;">
@@ -72,7 +73,6 @@
 						<input type="text" id="student-f4-select" name="f4" value="${f4}" placeholder="学生情報を入力してください"
 							maxlength="10" required style="width: 100%; height: 40px;
 							border: 1px solid #ccc; border-radius: 5px;">
-						<div class="mt-2 text-warning">${errors.get("f4")}</div>
 					</div>
 					<div class="col-2">
 						<button class="btn btn-secondary" id="filter-button"
@@ -85,8 +85,8 @@
 		</section>
 
 		<c:choose>
-			<c:when test="${subjects.size()>0}">
-				<div>科目：${subjects.size()}</div>
+			<c:when test="${students.size()>0}">
+				<div>科目：${students.size()}</div>
 				<table class="table table-hover">
 					<tr>
 						<th>入学年度</th>
@@ -97,18 +97,17 @@
 						<th>2回</th>
 					</tr>
 
-					<c:forEach var ="subject" items="${subjects}">
+					<c:forEach var ="student" items="${students}">
 						<tr>
-							<td>${subject.entyear}</td>
-							<td>${subject.classNum}</td>
-							<td>${subject.no}</td>
-							<td>${subject.name}</td>
+							<td>${student.entyear}</td>
+							<td>${student.classNum}</td>
+							<td>${student.no}</td>
+							<td>${student.name}</td>
 							<td>${subject.}</td>
 							<td>${subject.}</td>
 						</tr>
 					</c:forEach>
 				</table>
-				<div hidden>${subject.isActive}</div>
 			</c:when>
 			<c:otherwise>
 				<div>学生情報が存在しませんでした</div>
