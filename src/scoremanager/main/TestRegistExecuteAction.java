@@ -44,6 +44,7 @@ public class TestRegistExecuteAction extends Action{
 		LocalDate todaysDate = LocalDate.now();		// LocalDateインスタンスを取得
 		int year = todaysDate.getYear();
 		int num = 0;// 現在の年を取得
+		String StudentNo = null;
 		StudentDAO sDao = new StudentDAO();			// 学生DAO
 		SubjectDAO subDao = new SubjectDAO();
 		ClassNumDAO cNumDao = new ClassNumDAO();// クラス番号DAOを初期化
@@ -51,6 +52,7 @@ public class TestRegistExecuteAction extends Action{
 		List<String> errors = new ArrayList<>();	// エラーメッセージ
 		List<Test> tests = null;
 		List<Student> students = null;
+		int count = 0;
 		int p = 0;
 		boolean error  = true;
 		boolean flag = false;
@@ -85,9 +87,11 @@ public class TestRegistExecuteAction extends Action{
 			if(p > 100 || p < 0){
 				error = false;
 				TS = true;
+				StudentNo = tests.get(i).getStudent().getNo();
 				break;
 			}
 			tests.get(i).setPoint(p);
+			count++;
 		}
 		}else{
 			if(entYearStr != null ){
@@ -97,6 +101,7 @@ public class TestRegistExecuteAction extends Action{
 			int stusize = students.size();
 			for(int i = 0; i < stusize; i++){
 				Test test = new Test();
+
 				String pointStr = request.getParameter("point_" + students.get(i).getNo());
 				if(pointStr.equals("") == false){
 				p = Integer.parseInt(pointStr);
@@ -105,6 +110,7 @@ public class TestRegistExecuteAction extends Action{
 				}
 				if(p > 100 || p < 0){
 					error = false;
+					StudentNo = students.get(i).getNo();
 					break;
 				}
 				test.setSchool(teacher.getSchool());
@@ -114,6 +120,7 @@ public class TestRegistExecuteAction extends Action{
 				test.setStudent(students.get(i));
 				test.setSubject(sub);
 				tests.add(test);
+
 
 			}
 
@@ -135,7 +142,9 @@ public class TestRegistExecuteAction extends Action{
 			request.setAttribute("entYear", entYearStr);
 			request.setAttribute("classnum", classNum);
 			request.setAttribute("subject", subject);
+			request.setAttribute("sub", sub);
 			request.setAttribute("num", numStr);
+			request.setAttribute("StudentNo", StudentNo);
 
 			request.getRequestDispatcher("test_regist.jsp").forward(request, response);
 		}

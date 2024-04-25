@@ -76,18 +76,26 @@
 					<th>点数</th>
 					</tr>
 
-					<c:forEach var ="tests" items="${tests}">
+					<c:forEach var ="te" items="${tests}">
 						<tr>
-							<td>${tests.student.entyear}</td>
-							<td>${tests.classNum}</td>
-							<td>${tests.student.no}</td>
-							<td>${tests.student.name}</td>
-							<td><input type="text" name="point_${tests.student.no}" value="${tests.point}"> 			<c:if test="${not empty pointerrors }">
+							<td>${te.student.entyear}</td>
+							<td>${te.classNum}</td>
+							<td>${te.student.no}</td>
+							<td>${te.student.name}</td>
+							<td><input type="text" name="point_${te.student.no}" value="${te.point}">
+					<c:if test = "${te.student.no} equals ${StudentNo}">
+								<c:out value="${te.student.no }" />
+								<c:out value="${StudentNo }"/>
+
+						<c:if test="${not empty pointerrors }">
 					<c:forEach var="pointerrors" items="${pointerrors}">
 						<span style="color:#ffd9a3;">${pointerrors}</span>
 					</c:forEach>
 					<div style="margin-bottom:10px;"></div>
-					</c:if></td>
+					</c:if>
+					</c:if>
+
+					</td>
 
 						</tr>
 						</c:forEach>
@@ -116,18 +124,22 @@
 					<th>点数</th>
 					</tr>
 
-					<c:forEach var ="students" items="${students}">
+					<c:forEach var ="stu" items="${students}">
 						<tr>
-							<td>${students.entyear}</td>
-							<td>${students.classNum}</td>
-							<td>${students.no}</td>
-							<td>${students.name}</td>
-							<td><input type="text" name="point_${students.no}"> 			<c:if test="${not empty pointerrors }">
+							<td>${stu.entyear}</td>
+							<td>${stu.classNum}</td>
+							<td>${stu.no}</td>
+							<td>${stu.name}</td>
+							<td><input type="text" name="point_${stu.no}">
+						<c:if test = "${stu.no} equals ${StudentNo}">
+							<c:if test="${not empty pointerrors }">
 					<c:forEach var="pointerrors" items="${pointerrors}">
 						<span style="color:#ffd9a3;">${pointerrors}</span>
 					</c:forEach>
 					<div style="margin-bottom:10px;"></div>
-				</c:if></td>
+				</c:if>
+				</c:if>
+				</td>
 
 						</tr>
 						</c:forEach>
