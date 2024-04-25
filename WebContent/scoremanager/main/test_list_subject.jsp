@@ -86,7 +86,7 @@
 
 		<c:choose>
 			<c:when test="${students.size()>0}">
-				<div>科目：${subjects.name}</div>
+				<div>科目：${subject.name}</div>
 				<table class="table table-hover">
 					<tr>
 						<th>入学年度</th>
@@ -103,8 +103,26 @@
 							<td>${student.classNum}</td>
 							<td>${student.no}</td>
 							<td>${student.name}</td>
-							<td>${subject.}</td>
-							<td>${subject.}</td>
+							<td>
+								<c:choose>
+									<c:when test="${point1} != null">
+										${point1}
+									</c:when>
+									<c:otherwise>
+										-
+									</c:otherwise>
+								</c:choose>
+							</td>
+							<td>
+								<c:choose>
+									<c:when test="${point2} != null">
+										${point2}
+									</c:when>
+									<c:otherwise>
+										-
+									</c:otherwise>
+								</c:choose>
+							</td>
 						</tr>
 					</c:forEach>
 				</table>
