@@ -12,7 +12,7 @@
 	<c:param name="content">
 		<section class="text-align">
 			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">成績参照</h2>
-			<div class="row border mx-3 mb-3 py-2 align-items-center rounded"
+			<div class="row border mx-3 mb-3 py-2 align-items-center justify-content-center rounded"
 				id="filter">
 				<form action="TestListSubjectExecute.action" method="get" class="row align-items-center">
 					<div class="col-2">
@@ -56,7 +56,9 @@
 					</div>
 				</form>
 
-				<div class="border"></div>
+				<div class="text-align">
+					<div style="border-bottom: 1px solid #ccc; margin-bottom: 10px;"></div>
+				</div>
 
 				<form action="TestListStudentExecute.action" method="get" class="row align-items-center">
 					<div class="col-2">
