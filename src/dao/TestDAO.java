@@ -56,7 +56,7 @@ public class TestDAO extends DAO{
 		// SQL文の条件
 		String condition = " and class_num = ? and subject_cd = ? and no = ?";
 		// SQL文のソート
-		String order = " order by no asc ";
+		String order = " order by student_no asc ";
 
 		// SQL文の在学フラグ条件
 		String conditionIsAttend = "";
@@ -187,9 +187,10 @@ public class TestDAO extends DAO{
 				statement.setString(1, test.getStudent().getNo());
 				statement.setString(2, test.getSubject().getCd());
 				statement.setString(3, test.getSchool().getCd());
+				statement.setInt(4, test.getPoint());
 
-				statement.setInt(4, test.getNo());
-				statement.setString(5, test.getClassNum());
+				statement.setInt(5, test.getNo());
+				statement.setString(6, test.getClassNum());
 			}else{
 				statement = connection.prepareStatement("update test set point = ? where student_no = ? and subject_cd = ? and school_cd = ? and no = ?");
 
