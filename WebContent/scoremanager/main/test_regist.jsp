@@ -142,7 +142,9 @@
 
 
 
- 		<input type="submit" value="登録して終了">
+ 		<input type="submit" value="登録して終了"
+ 			style="background-color: #6a737b; color: white; border: none; border-radius: 10px;
+			padding: 8px 15px; margin-bottom: 20px;">
  		</form>
 			</c:when>
 		</c:choose>
