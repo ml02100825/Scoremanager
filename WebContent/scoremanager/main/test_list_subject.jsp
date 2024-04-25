@@ -85,29 +85,33 @@
 		</section>
 
 		<c:choose>
-			<c:when test="${students.size()>0}">
-				<div>氏名：${students.name}(${students.f4})</div>
+			<c:when test="${subjects.size()>0}">
+				<div>科目：${subjects.size()}</div>
 				<table class="table table-hover">
 					<tr>
-						<th>科目名</th>
-						<th>科目コード</th>
-						<th>回数</th>
-						<th>点数</th>
+						<th>入学年度</th>
+						<th>クラス</th>
+						<th>学生番号</th>
+						<th>氏名</th>
+						<th>1回</th>
+						<th>2回</th>
 					</tr>
 
-					<c:forEach var ="student" items="${students}">
+					<c:forEach var ="subject" items="${subjects}">
 						<tr>
-							<td>${student.entyear}</td>
-							<td>${student.classNum}</td>
-							<td>${student.no}</td>
-							<td>${student.name}</td>
+							<td>${subject.entyear}</td>
+							<td>${subject.classNum}</td>
+							<td>${subject.no}</td>
+							<td>${subject.name}</td>
+							<td>${subject.}</td>
+							<td>${subject.}</td>
 						</tr>
 					</c:forEach>
 				</table>
+				<div hidden>${subject.isActive}</div>
 			</c:when>
 			<c:otherwise>
-				<div>氏名：${students.name}(${students.f4})</div>
-				<div>成績情報が存在しませんでした</div>
+				<div>学生情報が存在しませんでした</div>
 			</c:otherwise>
 		</c:choose>
 	</c:param>
