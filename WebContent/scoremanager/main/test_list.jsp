@@ -33,7 +33,7 @@
 							class="form-select" id="student-f2-select" name="f2">
 							<option value="0">--------</option>
 							<c:forEach var="classNum" items="${class_num_set}">
-								<option value="${classNum}"<c:if test="${classNum==f2}">selected</c:if>>${class}</option>
+								<option value="${classNum}"<c:if test="${classNum==f2}">selected</c:if>>${classNum}</option>
 							</c:forEach>
 						</select>
 						<div class="mt-2 text-warning">${errors.get("f2")}</div>
@@ -42,8 +42,8 @@
 						<label class="form-label" for="student-f3-select">科目</label>
 						<select class="form-select" id="student-f3-select" name="f3">
 							<option value="0">--------</option>
-							<c:forEach var="subject" items="${sbject_set}">
-								<option value="${subject}"<c:if test="${subject==f3}">selected</c:if>>${subject}</option>
+							<c:forEach var="subject" items="${subject_set}">
+								<option value="${subject.cd}"<c:if test="${subject.name==f3}">selected</c:if>>${subject.name}</option>
 							</c:forEach>
 						</select>
 						<div class="mt-2 text-warning">${errors.get("f3")}</div>

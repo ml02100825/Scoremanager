@@ -83,7 +83,11 @@ public class TestRegistAction extends Action{
 		if (entyear !=0 && !classNum.equals("0") && !subject.equals("0") && num != 0){
 			//  入学年度とクラス番号を指定
 			request.setAttribute("entYear", entyear);
+			request.setAttribute("subject", subject);
+			request.setAttribute("sub", sub);
 
+			request.setAttribute("num", numStr);
+			request.setAttribute("classnum", classNum);
 			tests = testDao.filter(teacher.getSchool(), entyear, classNum, sub , num );
 			students = sDao.filter(teacher.getSchool(), true);
 
@@ -111,6 +115,8 @@ public class TestRegistAction extends Action{
 		// リクエストに学生リストをセット
 		request.setAttribute("tests", tests);
 
+
+
 		// リクエストにデータをセット
 		request.setAttribute("students", students);
 		request.setAttribute("class_num_set", cNumList);
@@ -126,6 +132,9 @@ public class TestRegistAction extends Action{
 
 
 
+
+	}
+	private void SetRequestData(HttpServletRequest request, HttpServletResponse response){
 
 	}
 

@@ -10,9 +10,9 @@
 
 <c:param name="content">
 <section class="me-4">
-			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">学生管理</h2>
+			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">成績管理</h2>
 			<div class="my-2 text-end px-4">
-				<a href="StudentCreate.action">新規登録</a>
+
 			</div>
 			<form method="get">
 				<div class="row border mx-3 mb-3 py-2 align-items-center rounded" id="filter">
@@ -67,7 +67,8 @@
 		</form>
 	<c:choose>
 		<c:when test="${tests.size()>0}">
-			<div>検索結果：${tests.size()}件</div>
+			<div>科目：${sub.name} (${num}回)</div>
+			<form method="post" action="TestRegistExecute.action" >
 			<table class="table table-hover">
 				<tr>
 					<th>入学年度</th>
@@ -79,14 +80,20 @@
 
 					<c:forEach var ="tests" items="${tests}">
 						<tr>
-							<td>${entyear}</td>
+							<td>${tests.student.entyear}</td>
 							<td>${tests.classNum}</td>
 							<td>${tests.student.no}</td>
 							<td>${tests.student.name}</td>
-							<td>${tests.point}</td>
+							<td><input type="text" name="point_${tests.student.no}" value="${tests.point}"></td>
 						</tr>
 						</c:forEach>
+
 			</table>
+		<input type="hidden" name="f1" value="${subject}">
+		<input type="hidden" name="f2" value="${classnum}">
+		<input type="hidden" name="f3" value="${num}">
+ 		<input type="submit" value="登録して終了">
+ 		</form>
 			</c:when>
 			<c:otherwise>
 				<div>学生情報が存在しませんでした</div>
