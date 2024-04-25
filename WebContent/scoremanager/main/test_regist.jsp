@@ -84,20 +84,69 @@
 							<td>${tests.classNum}</td>
 							<td>${tests.student.no}</td>
 							<td>${tests.student.name}</td>
-							<td><input type="text" name="point_${tests.student.no}" value="${tests.point}"></td>
+							<td><input type="text" name="point_${tests.student.no}" value="${tests.point}"> 			<c:if test="${not empty pointerrors }">
+					<c:forEach var="pointerrors" items="${pointerrors}">
+						<span style="color:#ffd9a3;">${pointerrors}</span>
+					</c:forEach>
+					<div style="margin-bottom:10px;"></div>
+					</c:if></td>
+
 						</tr>
 						</c:forEach>
 
+
 			</table>
-		<input type="hidden" name="f1" value="${subject}">
+		<input type="hidden" name="f1" value="${entYear}">
 		<input type="hidden" name="f2" value="${classnum}">
-		<input type="hidden" name="f3" value="${num}">
+		<input type="hidden" name="f3" value="${subject}">
+		<input type="hidden" name="f4" value="${num}">
  		<input type="submit" value="登録して終了">
  		</form>
 			</c:when>
-			<c:otherwise>
-				<div>学生情報が存在しませんでした</div>
-			</c:otherwise>
+
+
+
+			<c:when test="${tests.size() == 0}">
+					<div>科目：${sub.name} (${num}回)</div>
+			<form method="post" action="TestRegistExecute.action" >
+			<table class="table table-hover">
+				<tr>
+					<th>入学年度</th>
+					<th>クラス</th>
+					<th>学生番号</th>
+					<th>氏名</th>
+					<th>点数</th>
+					</tr>
+
+					<c:forEach var ="students" items="${students}">
+						<tr>
+							<td>${students.entyear}</td>
+							<td>${students.classNum}</td>
+							<td>${students.no}</td>
+							<td>${students.name}</td>
+							<td><input type="text" name="point_${students.no}"> 			<c:if test="${not empty pointerrors }">
+					<c:forEach var="pointerrors" items="${pointerrors}">
+						<span style="color:#ffd9a3;">${pointerrors}</span>
+					</c:forEach>
+					<div style="margin-bottom:10px;"></div>
+				</c:if></td>
+
+						</tr>
+						</c:forEach>
+
+
+			</table>
+		<input type="hidden" name="f1" value="${entYear}">
+		<input type="hidden" name="f2" value="${classnum}">
+		<input type="hidden" name="f3" value="${subject}">
+
+		<input type="hidden" name="f4" value="${num}">
+
+
+
+ 		<input type="submit" value="登録して終了">
+ 		</form>
+			</c:when>
 		</c:choose>
 	</section>
 	</c:param>

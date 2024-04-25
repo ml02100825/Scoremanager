@@ -119,6 +119,7 @@ public class TestDAO extends DAO{
 		PreparedStatement statement = null;
 		Test test = new Test();
 
+
 		try{
 
 			statement = connection.prepareStatement("select * from test where no = ? and student_no = ? and subject_cd = ? and school_cd = ? ");
@@ -146,7 +147,7 @@ public class TestDAO extends DAO{
 
 
 			}else{
-				student = null;
+				test = null;
 			}
 		}catch (Exception e){
 			throw e;
@@ -180,9 +181,10 @@ public class TestDAO extends DAO{
 		try{
 
 			Test old = get(test.getStudent(), test.getSubject(), test.getSchool(), test.getNo());
-			if (old == null){
+
+			if ( old== null){
 				statement = connection.prepareStatement(
-						"insert into test(student_no, subject_cd, school_cd, point, no,class_num) values(?, ? ,?, null ,?,?)");
+						"insert into test(student_no, subject_cd, school_cd, point, no,class_num) values(?, ? ,?, ? ,?,?)");
 
 				statement.setString(1, test.getStudent().getNo());
 				statement.setString(2, test.getSubject().getCd());
@@ -218,9 +220,9 @@ public class TestDAO extends DAO{
 
 	}
 
-	public List<Test> save(List<Test> list) throws Exception {
+	public boolean save(List<Test> list) throws Exception {
 		// リストを初期化
-
+		int count = 0;
 		// コネクションを確率
 		Connection connection = getConnection();
 
@@ -241,6 +243,9 @@ public class TestDAO extends DAO{
 			int size = list.size();
 			for(int i = 0; i < size; i++){
 				t = save(list.get(i), connection);
+				if (t = true){
+					count++;
+				}
 			}
 
 
@@ -272,7 +277,11 @@ public class TestDAO extends DAO{
 
 
 		// listを返す
-		return list;
+		if(count > 0){
+		return true;
+		}else{
+			return false;
+		}
 	}
 	public boolean delete(Student student) throws Exception {
 		// コネクションを確立
