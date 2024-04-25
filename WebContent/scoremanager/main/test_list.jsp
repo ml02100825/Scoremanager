@@ -69,7 +69,7 @@
 						<c:forEach var="student" items="${student_set}">
 							<option value="${student}"<c:if test="${student==f4}">selected</c:if>>${student}</option>
 						</c:forEach>
-						<input type="text" id="student-f4-select" name="f4" value="${no}" placeholder="学生情報を入力してください"
+						<input type="text" id="student-f4-select" name="f4" value="${f4}" placeholder="学生情報を入力してください"
 							maxlength="10" required style="width: 100%; height: 40px;
 							border: 1px solid #ccc; border-radius: 5px;">
 						<div class="mt-2 text-warning">${errors.get("f4")}</div>
