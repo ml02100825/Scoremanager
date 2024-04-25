@@ -17,7 +17,8 @@
 					登録が完了しました
 				</label>
 			</p>
-			<a href="TestRegist.action">成績一覧</a>
+			<a href="TestRegist.action">戻る</a>
+			<a href="TestList.action">成績参照</a>
 		</section>
 	</c:param>
 </c:import>

@@ -16,7 +16,7 @@
 			</div>
 			<form method="get">
 				<div class="row border mx-3 mb-3 py-2 align-items-center rounded" id="filter">
-					<div class="col-4">
+					<div class="col-2">
 						<label class="form-label" for="student-f1-select">入学年度 </label>
 						<select class="form-select " id="student-f1-select" name="f1">
 							<option value="0">--------</option>
@@ -26,7 +26,7 @@
 							</c:forEach>
 						</select>
 					</div>
-					<div class="col-4">
+					<div class="col-2">
 						<label class="form-label" for="student-f2-select">クラス</label>
 						<select class="form-select " id="student-f2-select" name="f2">
 							<option value="0">--------</option>
@@ -48,19 +48,17 @@
 							</select>
 
 					</div>
-							<div class="col-4">
-						<label class="form-label" for="student-f4-select">回数
-
-							<%-- パラメーターf3が存在している場合checkedを追記 --%>
-									<select  class="form-select " id="student-f4-select" name="f4">
-									<option value="0">--------</option>
-   							 <option value="1">1</option>
-   						 <option value="2">2</option>
-								</select>
-						</label>
+					<div class="col-2">
+						<label class="form-label" for="student-f4-select">回数</label>
+						<%-- パラメーターf3が存在している場合checkedを追記 --%>
+						<select  class="form-select " id="student-f4-select" name="f4">
+							<option value="0">--------</option>
+   							<option value="1">1</option>
+   							<option value="2">2</option>
+						</select>
 					</div>
 					<div class="col-2 text-center">
-						<button class="btn btn-secondary" id="filter-button" >絞込み</button>
+						<button class="btn btn-secondary" id="filter-button" >検索</button>
 					</div>
 			<div class="mt-2 text-warning">${errors.get("f1")}</div>
 		</div>
