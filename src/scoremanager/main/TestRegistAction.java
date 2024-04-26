@@ -117,6 +117,9 @@ public class TestRegistAction extends Action{
 		// リクエストにクラス番号をセット
 		request.setAttribute("f2", classNum);
 
+		request.setAttribute("f3", subject);
+		request.setAttribute("f4", numStr);
+
 
 		// リクエストに学生リストをセット
 		request.setAttribute("tests", tests);
