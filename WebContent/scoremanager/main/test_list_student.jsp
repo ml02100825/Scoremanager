@@ -92,7 +92,7 @@
 		</section>
 
 		<c:choose>
-			<c:when test="${students.size()>0}">
+			<c:when test="${test.size()>0}">
 				<div>氏名：${name}(${f4})</div>
 				<table class="table table-hover">
 					<tr>
@@ -102,12 +102,12 @@
 						<th>点数</th>
 					</tr>
 
-					<c:forEach var ="student" items="${students}">
+					<c:forEach var ="student" items="${test}">
 						<tr>
-							<td>${subject.name}</td>
-							<td>${subject.cd}</td>
-							<td>${no}</td>
-							<td>${ponint}</td>
+							<td>${student.subject.name}</td>
+							<td>${student.subject.cd}</td>
+							<td>${student.no}</td>
+							<td>${student.point}</td>
 						</tr>
 					</c:forEach>
 				</table>

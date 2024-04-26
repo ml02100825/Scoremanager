@@ -19,6 +19,7 @@ import dao.ClassNumDAO;
 import dao.StudentDAO;
 import dao.SubjectDAO;
 import dao.TestDAO;
+import dao.TestListStudentDAO;
 import tool.Action;
 
 public class TestListStudentExecuteAction extends Action{
@@ -46,6 +47,7 @@ public class TestListStudentExecuteAction extends Action{
 		for (int i =year -10	; i < year + 1; i++){
 			entYearSet.add(i);
 		}
+		TestListStudentDAO testliststudent=new TestListStudentDAO();
 
 		List<String> list = cNumDao.filter(teacher.getSchool());
 	    // 科目名のリストを取得
@@ -54,25 +56,15 @@ public class TestListStudentExecuteAction extends Action{
 	    request.setAttribute("class_num_set", list);
 		request.setAttribute("ent_year_set", entYearSet);
 
-		student.setNo(studentno);
-		subject.setCd();
-		school.setCd(teacher.getSchool().getCd());
-		int no=test.getNo();
-		Test t=tDao.get(student, subject, school, no);
+		List<Test> name=testliststudent.filter(s);
+		request.setAttribute("test", name);
+		System.out.print(name);
 
     	if(s==null){
     		errors.put("f4", "学生番号が存在しません");
 			request.setAttribute("errors", errors);
 			request.getRequestDispatcher("TestList.action").forward(request, response);
 			return;
-    	}
-    	if(t!=null){
-    		request.setAttribute("subject.name", t.getSubject().getName());
-    		request.setAttribute("subject.cd", t.getSubject().getCd());
-    		request.setAttribute("no", t.getNo());
-    		request.setAttribute("point", t.getPoint());
-    		return;
-
     	}
 
     	request.setAttribute("f4", studentno);
