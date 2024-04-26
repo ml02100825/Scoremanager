@@ -14,7 +14,7 @@ import bean.Student;
 public class StudentDAO extends DAO{
 	private String baseSql = " select * from student where school_cd=? and is_active = true ";
 	// フィルター後のリストへの格納処理をするメソッド
-	public List<Student> postFilter(ResultSet rSet, School school) throws Exception {
+	private List<Student> postFilter(ResultSet rSet, School school) throws Exception {
 		// リストの初期化
 		List<Student> list = new ArrayList<>();
 		try{
@@ -266,6 +266,7 @@ public class StudentDAO extends DAO{
 		try{
 
 			Student old = get(student.getNo());
+			System.out.println(old);
 			if (old == null){
 				statement = connection.prepareStatement(
 						"insert into student(no, name, ent_year, class_num, is_attend,is_active,  school_cd) values(?, ? ,?, ? ,? , true, ?)");

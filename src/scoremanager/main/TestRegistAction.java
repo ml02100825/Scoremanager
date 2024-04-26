@@ -58,6 +58,10 @@ public class TestRegistAction extends Action{
 		classNum = request.getParameter("f2");
 		subject = request.getParameter("f3");
 		numStr = request.getParameter("f4");
+		System.out.println("1：" + entYearStr);
+		System.out.println("2：" + classNum);
+		System.out.println("3：" + subject);
+		System.out.println("4：" + numStr);
 		System.out.println(subject);
 		Subject sub = subDao.get(subject, teacher.getSchool());
 
@@ -83,9 +87,15 @@ public class TestRegistAction extends Action{
 		if (entyear !=0 && !classNum.equals("0") && !subject.equals("0") && num != 0){
 			//  入学年度とクラス番号を指定
 			request.setAttribute("entYear", entyear);
+			request.setAttribute("subject", subject);
+			request.setAttribute("sub", sub);
 
+			request.setAttribute("num", numStr);
+			request.setAttribute("classnum", classNum);
 			tests = testDao.filter(teacher.getSchool(), entyear, classNum, sub , num );
-			students = sDao.filter(teacher.getSchool(), true);
+			if(tests == null || tests.size() == 0){
+			students = sDao.filter(teacher.getSchool(),entyear ,classNum, true);
+			}
 
 		}
 
@@ -111,12 +121,15 @@ public class TestRegistAction extends Action{
 		// リクエストに学生リストをセット
 		request.setAttribute("tests", tests);
 
+
+
 		// リクエストにデータをセット
 		request.setAttribute("students", students);
 		request.setAttribute("class_num_set", cNumList);
 		request.setAttribute("subject_set", SubList);
 
 		request.setAttribute("ent_year_set", entYearSet);
+
 
 		// JSPにフォワード
 		request.getRequestDispatcher("test_regist.jsp").forward(request, response);
@@ -126,6 +139,9 @@ public class TestRegistAction extends Action{
 
 
 
+
+	}
+	private void SetRequestData(HttpServletRequest request, HttpServletResponse response){
 
 	}
 

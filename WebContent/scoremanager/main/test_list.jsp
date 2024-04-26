@@ -73,3 +73,31 @@
         </section>
     </c:param>
 </c:import>
+				<form action="TestListStudentExecute.action" method="get" class="row align-items-center">
+					<div class="col-2">
+						学生情報
+					</div>
+					<div class="col-4">
+						<label class="form-label" for="student-f4-select">学生番号</label>
+						<c:forEach var="student" items="${student_set}">
+							<option value="${student}"<c:if test="${student==f4}">selected</c:if>>${student}</option>
+						</c:forEach>
+						<input type="text" id="student-f4-select" name="f4" value="${f4}" placeholder="学生情報を入力してください"
+							maxlength="10" required style="width: 100%; height: 40px;
+							border: 1px solid #ccc; border-radius: 5px;">
+						<div class="mt-2 text-warning">${errors.get("f4")}</div>
+					</div>
+					<div class="col-2">
+						<button class="btn btn-secondary" id="filter-button"
+							style="background-color: #69727a; border: none;">
+							検索
+						</button>
+					</div>
+				</form>
+			</div>
+		</section>
+		<p style="color: #64d7f2;">
+			科目情報を選択または学生情報を入力して検索ボタンをクリックしてください
+		</p>
+	</c:param>
+</c:import>

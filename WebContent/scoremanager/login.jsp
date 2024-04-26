@@ -22,6 +22,7 @@
 						</c:forEach>
 					</div>
 
+<<<<<<< HEAD
 					<div style="position: relative;">
 						<input type="text" name="id" value="" placeholder="半角でご入力ください"
 							maxlength="20" required style="width: 750px; height: 50px; margin-bottom: 10px;"
@@ -36,6 +37,12 @@
 						<div id="passwordLabel" style="position: absolute; top: -20px; left: 0; font-size: 12px; display: none;">パスワード</div>
 					</div>
 
+=======
+					<input type="text" name="id" value="" placeholder="半角でご入力ください"
+						maxlength="20" required style="width: 100%; height: 50px; margin-bottom: 10px;"><br>
+					<input type="password" name="password" id="password" value="" placeholder="20文字以内の半角英数字でご入力ください"
+						maxlength="20" required style="width: 100%; height: 50px; margin-bottom: 10px;"><br>
+>>>>>>> branch 'master' of https://github.com/ml02100825/Scoremanager.git
 					<input type="checkbox" id="chk_d_ps" onclick="togglePassword()">
 					<label for="chk_d_ps" style="margin-bottom: 10px;">パスワードを表示</label><br>
 					<input type="submit" value="ログイン"
