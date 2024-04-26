@@ -42,6 +42,7 @@
 						maxlength="30" required style="width: 100%; height: 40px; margin-bottom: 10px;
 						border: 1px solid #ccc; border-radius: 5px;">
 					<div class="mt-2 text-warning">${errors.get("f3")}</div>
+
 					<label class="form-label" for="student-f4-select">クラス</label>
 					<select class="form-select " id="student-f4-select" name="f4" style="margin-bottom: 10px;">
 						<option value="0">--------</option>

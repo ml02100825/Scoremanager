@@ -60,7 +60,7 @@
 
 						<div class="text_align">
 							<button class="btn btn-secondary" id="filter-button" style="margin-bottom: 10px;">
-								登録して終了
+								変更																														
 							</button>
 						</div>
 
