@@ -43,11 +43,12 @@
 							<%-- パラメーターf3が存在している場合checkedを追記 --%>
 									<c:forEach var="num" items="${subject_set}">
 								<%-- 現在のnumと選択されていたf2が一致していた場合selectedを追記 --%>
-								<option value="${num.cd}" <c:if test="${num.name==f3}">selected</c:if>>${num.name}</option>
+								<option value="${num.cd}" <c:if test="${num.cd==f3}">selected</c:if>>${num.name}</option>
 							</c:forEach>
 							</select>
 
 					</div>
+<<<<<<< HEAD
 							<div class="col-4">
 						<label class="form-label" for="student-f4-select">回数
 
@@ -58,6 +59,16 @@
    						 <option value="2">2</option>
 								</select>
 						</label>
+=======
+					<div class="col-2">
+						<label class="form-label" for="student-f4-select">回数</label>
+						<%-- パラメーターf3が存在している場合checkedを追記 --%>
+						<select  class="form-select " id="student-f4-select" name="f4">
+							<option value="0">--------</option>
+   							<option value="1" <c:if test="${'1' == f4}">selected</c:if>>1</option>
+   							<option value="2" <c:if test="${'2' == f4}">selected</c:if>>2</option>
+						</select>
+>>>>>>> branch 'master' of https://github.com/ml02100825/Scoremanager.git
 					</div>
 					<div class="col-2 text-center">
 						<button class="btn btn-secondary" id="filter-button" >絞込み</button>
@@ -178,6 +189,6 @@
 				</c:when>
 			</c:choose>
 		</section>
->>>>>>> branch 'master' of https://github.com/ml02100825/Scoremanager.git
+
 	</c:param>
 </c:import>
