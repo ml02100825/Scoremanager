@@ -14,7 +14,7 @@
 			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">成績管理</h2>
 			<div class="my-2 text-end px-4">
 			</div>
-			<form method="get">
+			<form method="get" action="TestRegist.action">
 				<div class="row border mx-3 mb-3 py-2 align-items-center rounded" id="filter">
 					<div class="col-2">
 						<label class="form-label" for="student-f1-select">入学年度 </label>
@@ -57,7 +57,7 @@
 						</select>
 					</div>
 					<div class="col-2 text-center">
-						<button class="btn btn-secondary" id="filter-button" >検索</button>
+						<button class="btn btn-secondary" name ="button" id="filter-button"  value ="serch">検索</button>
 					</div>
 					<div class="mt-2 text-warning">${errors.get("f1")}</div>
 				</div>
@@ -82,12 +82,14 @@
 									<td>${tests.student.no}</td>
 									<td>${tests.student.name}</td>
 									<td><input type="text" name="point_${tests.student.no}" value="${tests.point}">
+										<c:if test="${tests.student.no eq StudentNo }">
 										<c:if test="${not empty pointerrors }">
 											<c:forEach var="pointerrors" items="${pointerrors}">
 												<div>
 													<span style="color:#ffd9a3;">${pointerrors}</span>
 												</div>
 											</c:forEach>
+										</c:if>
 										</c:if>
 									</td>
 								</tr>
@@ -121,10 +123,12 @@
 									<td>${students.no}</td>
 									<td>${students.name}</td>
 									<td><input type="text" name="point_${students.no}">
+										<c:if test="${student.no eq StudentNo }">
 										<c:if test="${not empty pointerrors }">
 											<c:forEach var="pointerrors" items="${pointerrors}">
 												<div><span style="color:#ffd9a3;">${pointerrors}</span></div>
 											</c:forEach>
+										</c:if>
 										</c:if>
 									</td>
 								</tr>
