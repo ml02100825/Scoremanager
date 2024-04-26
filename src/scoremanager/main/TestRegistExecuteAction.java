@@ -145,6 +145,18 @@ public class TestRegistExecuteAction extends Action{
 			request.setAttribute("sub", sub);
 			request.setAttribute("num", numStr);
 			request.setAttribute("StudentNo", StudentNo);
+			request.setAttribute("students", students);
+			List<String> cNumList = cNumDao.filter(teacher.getSchool());
+			List<Subject> SubList = subDao.filter(teacher.getSchool());
+			List<Integer> entYearSet = new ArrayList<>();
+			// 10年前から1年後までをリストに追加
+			for (int i =year -10	; i < year + 1; i++){
+				entYearSet.add(i);
+			}
+			request.setAttribute("class_num_set", cNumList);
+			request.setAttribute("subject_set", SubList);
+
+			request.setAttribute("ent_year_set", entYearSet);
 
 			request.getRequestDispatcher("test_regist.jsp").forward(request, response);
 		}
