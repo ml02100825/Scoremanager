@@ -7,73 +7,105 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import bean.School;
+import bean.Subject;
 import bean.Test;
 
-public class TestListSubjectDAO extends DAO {
-    public List<Test> filter(int ent_year, String class_num, String cd) throws Exception {
-        List<Test> testList = new ArrayList<>();
-        Connection connection = null;
-        PreparedStatement statement = null;
-        ResultSet rs = null;
 
-        try {
-            // コネクションを取得
-            connection = getConnection();
+public class TestListSubjectDAO extends DAO{
+	private String baseSql = " select * from test";
+	// フィルター後のリストへの格納処理をするメソッド
+	private List<Test> postFilter(ResultSet rSet, School school) throws Exception {
+		// リストの初期化
+		List<Test> list = new ArrayList<>();
+		try{
+			StudentDAO stuDao = new StudentDAO();
+			SubjectDAO subDao = new SubjectDAO();
+			SchoolDAO schDao = new SchoolDAO();
+			// リザルトを全権走査
+			while(rSet.next()){
+				// 学生インスタンスを初期化
+				Test t = new Test();
+				// 学生インスタンスを初期化
+				t.setStudent(stuDao.get(rSet.getString("student_no")));
+				t.setSubject(subDao.get(rSet.getString("subject_cd"),school));
+				t.setSchool(schDao.get(rSet.getString("school_cd")));
+				t.setPoint(rSet.getInt("point"));
+				t.setNo(rSet.getInt("no"));
+				t.setClassNum(rSet.getString("class_num"));
+				// リストに追加
+				list.add(t);
+			}}catch(SQLException | NullPointerException e){
+				e.printStackTrace();
+			}
 
-            // SQLクエリを準備
-            String sql = "SELECT * FROM test " +
-                         "INNER JOIN student ON test.student_no = student.no " +
-                         "INNER JOIN subject ON test.subject_cd = subject.cd " +
-                         "WHERE student.ent_year = ? AND student.class_num = ? AND subject.cd = ?";
-            statement = connection.prepareStatement(sql);
 
-            // パラメータを設定
-            statement.setInt(1, ent_year);
-            System.out.println("入学年度:" + ent_year);
-            statement.setString(2, class_num);
-            System.out.println("クラス:" + class_num);
-            statement.setString(3, cd);
-            System.out.println("科目コード:" + cd);
+		// listを返す
+		return list;
+	}
+	public List<Test> filter(Subject subject, int ent_year, School school, String class_num) throws Exception {
+		// リストを初期化
+		List<Test> list = new ArrayList<>();
+		// コネクションを確率
+		Connection connection = getConnection();
+		// プリペアードステートメント
+		PreparedStatement statement  = null;
+		// リザルトセット
+		ResultSet rSet = null;
+		// SQL文の条件
+		String condition = " where school_cd = ? and subject_cd = ? and student_no LIKE ? and class_num = ?";
+		// SQL文のソート
+		String order = " order by student_no asc ";
 
-            // クエリを実行
-            rs = statement.executeQuery();
+		String year = String.valueOf(ent_year);
+			String year2 = year.substring(2,4);
+			System.out.println("year2:" + year2);
 
-            // 結果セットを処理
-            while (rs.next()) {
-                Test test = new Test();
-                // 結果セットから Test オブジェクトにデータを設定
-                test.setNo(rs.getInt("no"));
-                test.setPoint(rs.getInt("point"));
-                // 他のプロパティも設定
-                testList.add(test);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            // ResultSet、Statement、Connection を逆順にクローズ
-            if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (statement != null) {
-                try {
-                    statement.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+		try{
+			// プリペアードステートメントにSQｌ文をセット
+			statement = connection.prepareStatement(baseSql + condition + order);
+			System.out.println(statement);
+			// プリペアードステートメントに学校コードをバインド
+			statement.setString(1, school.getCd());
 
-        return testList;
-    }
+			// プリペアードステートメントにクラス番号をバインド
+			statement.setString(2, subject.getCd());
+
+			statement.setString(3, year2+"%");
+
+			statement.setString(4, class_num);
+
+			System.out.println(school.getCd() + subject.getCd() + year2+"%" + class_num);
+			// プライベートステートメントを実行
+			rSet = statement.executeQuery();
+
+			// リストへの格納処理を実行
+			list = postFilter(rSet, school);
+		}catch(Exception e){
+			throw e;
+		} finally{
+			if(statement != null){
+				try{
+					statement.close();
+
+				} catch(SQLException sqle){
+					throw sqle;
+				}
+			}
+			if (connection != null){
+				try{
+					connection.close();
+				}catch (SQLException sqle){
+					throw sqle;
+				}
+			}
+		}
+		// とってきたデータの数分ループ
+
+
+
+
+		// listを返す
+		return list;
+	}
 }
