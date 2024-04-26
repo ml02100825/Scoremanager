@@ -51,7 +51,7 @@ public class LoginExecuteAction extends Action {
 			// 認証失敗の場合
 			// エラーメッセージをセット
 			List<String> errors = new ArrayList<>();
-			errors.add("ログインに失敗しました。IDまたはパスワードが正しくありません");
+			errors.add("IDまたはパスワードが確認できませんでした");
 			request.setAttribute("errors", errors);
 			// 入力された教員IDをセット
 			request.setAttribute("id", id);

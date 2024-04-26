@@ -53,13 +53,11 @@ public class TestRegistAction extends Action{
 		Map<String, String> errors = new HashMap<>();	// エラーメッセージ
 		List<Test> tests = null;
 		List<Student> students = null;
-		String flag = null;
 		// リクエストパラメーターの取得
 		entYearStr = request.getParameter("f1");
 		classNum = request.getParameter("f2");
 		subject = request.getParameter("f3");
 		numStr = request.getParameter("f4");
-		flag = request.getParameter("button");
 		System.out.println("1：" + entYearStr);
 		System.out.println("2：" + classNum);
 		System.out.println("3：" + subject);
@@ -99,12 +97,6 @@ public class TestRegistAction extends Action{
 			students = sDao.filter(teacher.getSchool(),entyear ,classNum, true);
 			}
 
-		}else if (flag != null  ){
-			if(entyear ==0 || classNum.equals("0") || subject.equals("0") || num == 0){
-				errors.put("f1", "入学年度とクラスと科目と回数を選択してください");
-
-				request.setAttribute("errors", errors);
-			}
 		}
 
 		// ビジネスロジック

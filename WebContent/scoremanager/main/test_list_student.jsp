@@ -8,13 +8,17 @@
 	<c:param name="title">
         得点管理システム
     </c:param>
+
 	<c:param name="scripts"></c:param>
 
 	<c:param name="content">
 		<section class="text-align">
+
 			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">成績参照（学生）</h2>
+
 			<div class="row border mx-3 mb-3 py-2 align-items-center justify-content-center rounded"
 				id="filter">
+
 				<form action="TestListSubjectExecute.action" method="get" class="row align-items-center">
 					<div class="col-2">
 						科目情報
@@ -82,7 +86,9 @@
 						</button>
 					</div>
 				</form>
+
 			</div>
+
 		</section>
 
 		<c:choose>
@@ -106,10 +112,13 @@
 					</c:forEach>
 				</table>
 			</c:when>
+
 			<c:otherwise>
 				<div>氏名：${name}(${f4})</div>
 				<div>成績情報が存在しませんでした</div>
 			</c:otherwise>
 		</c:choose>
+
 	</c:param>
+
 </c:import>
