@@ -12,7 +12,9 @@
 
 	<c:param name="content">
 		<div class="row border mx-3 mb-3 align-items-center" id="filter">
+
 			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4 text-center">ログイン</h2>
+
 			<form action="LoginExecute.action" method="post">
 				<div style="text-align: center;">
 
@@ -31,10 +33,13 @@
 					<input type="submit" value="ログイン"
 						style="background-color: #0d6efd; color: white; border: none; border-radius: 10px;
 						padding: 8px 50px; margin-bottom: 20px;">
+
 				</div>
 			</form>
+
 		</div>
 	</c:param>
+
 </c:import>
 
 <script>

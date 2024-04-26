@@ -10,7 +10,9 @@
 
 	<c:param name="content">
 		<section class="me-4">
-			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">メニュー	</h2>
+
+			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">メニュー</h2>
+
 			<div class="row">
 				<div class="col d-flex align-items-center justify-content-center mx-2 rounded shadow"
 					style="height: 10rem; background-color: #dbb;">
@@ -27,6 +29,8 @@
 					<a href="SubjectList.action">科目管理</a>
 				</div>
 			</div>
+
 		</section>
 	</c:param>
+
 </c:import>

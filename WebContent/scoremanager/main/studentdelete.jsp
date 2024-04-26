@@ -1,4 +1,4 @@
-<%-- 共通テンプレート --%>
+<%-- 学生削除JSP --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -12,8 +12,10 @@
 
 	<c:param name="content">
 		<section class="me-4">
+
 			<c:set var="name" value="${requestScope.name}" />
 			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">学生情報変更</h2>
+
 			<form action="StudentDeleteexecute.action" method="get">
 				<input type="hidden" name = "f1" value = "${student.getNo()}"></input>
 				<div class="text-align">
@@ -27,9 +29,12 @@
 						</c:forEach>
 					</ul>
 				</div>
+
 				<a href="StudentList.action">戻る</a>
+
 			</form>
 
 		</section>
 	</c:param>
+
 </c:import>
