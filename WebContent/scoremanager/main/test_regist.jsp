@@ -59,11 +59,9 @@
 					<div class="col-2 text-center">
 						<button class="btn btn-secondary" id="filter-button" >検索</button>
 					</div>
-
-			<div class="mt-2 text-warning">${errors.get("f1")}</div>
-		</div>
-		</form>
-
+					<div class="mt-2 text-warning">${errors.get("f1")}</div>
+				</div>
+			</form>
 			<c:choose>
 				<c:when test="${tests.size()>0}">
 					<div>科目：${sub.name} (${num}回)</div>
@@ -77,82 +75,70 @@
 								<th>点数</th>
 							</tr>
 
-			<c:forEach var ="te" items="${tests}">
-						<tr>
-							<td>${te.student.entyear}</td>
-							<td>${te.classNum}</td>
-							<td>${te.student.no}</td>
-							<td>${te.student.name}</td>
-							<td><input type="text" name="point_${te.student.no}" value="${te.point}">
-					<c:if test = "${te.student.no} equals ${StudentNo}">
-								<c:out value="${te.student.no }" />
-								<c:out value="${StudentNo }"/>
-
-						<c:if test="${not empty pointerrors }">
-					<c:forEach var="pointerrors" items="${pointerrors}">
-						<span style="color:#ffd9a3;">${pointerrors}</span>
-					</c:forEach>
-					<div style="margin-bottom:10px;"></div>
-					</c:if>
-					</c:if>
-
-					</td>
-
-						</tr>
-						</c:forEach>
-					</table>
-					<input type="hidden" name="f1" value="${entYear}">
-					<input type="hidden" name="f2" value="${classnum}">
-					<input type="hidden" name="f3" value="${subject}">
-					<input type="hidden" name="f4" value="${num}">
- 					<input type="submit" value="登録して終了"
- 						style="background-color: #6a737b; color: white; border: none; border-radius: 10px;
-						padding: 8px 15px; margin-bottom: 20px;">
- 				</form>
-			</c:when>
-			<c:when test="${tests.size() == 0}">
-				<div>科目：${sub.name} (${num}回)</div>
-				<form method="post" action="TestRegistExecute.action" >
-					<table class="table table-hover">
+							<c:forEach var ="tests" items="${tests}">
+								<tr>
+									<td>${tests.student.entyear}</td>
+									<td>${tests.classNum}</td>
+									<td>${tests.student.no}</td>
+									<td>${tests.student.name}</td>
+									<td><input type="text" name="point_${tests.student.no}" value="${tests.point}">
+										<c:if test="${not empty pointerrors }">
+											<c:forEach var="pointerrors" items="${pointerrors}">
+												<div>
+													<span style="color:#ffd9a3;">${pointerrors}</span>
+												</div>
+											</c:forEach>
+										</c:if>
+									</td>
+								</tr>
+							</c:forEach>
+						</table>
+						<input type="hidden" name="f1" value="${entYear}">
+						<input type="hidden" name="f2" value="${classnum}">
+						<input type="hidden" name="f3" value="${subject}">
+						<input type="hidden" name="f4" value="${num}">
+ 						<input type="submit" value="登録して終了"
+ 							style="background-color: #6a737b; color: white; border: none; border-radius: 10px;
+							padding: 8px 15px; margin-bottom: 20px;">
+					</form>
+				</c:when>
+				<c:when test="${tests.size() == 0}">
+					<div>科目：${sub.name} (${num}回)</div>
+					<form method="post" action="TestRegistExecute.action" >
+						<table class="table table-hover">
 							<tr>
-							<th>入学年度</th>
-							<th>クラス</th>
-							<th>学生番号</th>
-							<th>氏名</th>
-							<th>点数</th>
+								<th>入学年度</th>
+								<th>クラス</th>
+								<th>学生番号</th>
+								<th>氏名</th>
+								<th>点数</th>
+							</tr>
 
-						</tr>
+							<c:forEach var ="students" items="${students}">
+								<tr>
+									<td>${students.entyear}</td>
+									<td>${students.classNum}</td>
+									<td>${students.no}</td>
+									<td>${students.name}</td>
+									<td><input type="text" name="point_${students.no}">
+										<c:if test="${not empty pointerrors }">
+											<c:forEach var="pointerrors" items="${pointerrors}">
+												<div><span style="color:#ffd9a3;">${pointerrors}</span></div>
+											</c:forEach>
+										</c:if>
+									</td>
+								</tr>
+							</c:forEach>
 
-						<c:forEach var ="stu" items="${students}">
-							<tr>
-
-							<td>${stu.entyear}</td>
-							<td>${stu.classNum}</td>
-							<td>${stu.no}</td>
-							<td>${stu.name}</td>
-							<td><input type="text" name="point_${stu.no}">
-						<c:if test = "${stu.no} equals ${StudentNo}">
-							<c:if test="${not empty pointerrors }">
-					<c:forEach var="pointerrors" items="${pointerrors}">
-						<span style="color:#ffd9a3;">${pointerrors}</span>
-					</c:forEach>
-					<div style="margin-bottom:10px;"></div>
-				</c:if>
-				</c:if>
-				</td>
-				</tr>
-						</c:forEach>
-
-
-					</table>
-					<input type="hidden" name="f1" value="${entYear}">
-					<input type="hidden" name="f2" value="${classnum}">
-					<input type="hidden" name="f3" value="${subject}">
-					<input type="hidden" name="f4" value="${num}">
- 					<input type="submit" value="登録して終了"
-	 					style="background-color: #6a737b; color: white; border: none; border-radius: 10px;
-						padding: 8px 15px; margin-bottom: 20px;">
- 					</form>
+						</table>
+						<input type="hidden" name="f1" value="${entYear}">
+						<input type="hidden" name="f2" value="${classnum}">
+						<input type="hidden" name="f3" value="${subject}">
+						<input type="hidden" name="f4" value="${num}">
+ 						<input type="submit" value="登録して終了"
+							style="background-color: #6a737b; color: white; border: none; border-radius: 10px;
+							padding: 8px 15px; margin-bottom: 20px;">
+					</form>
 				</c:when>
 			</c:choose>
 		</section>
