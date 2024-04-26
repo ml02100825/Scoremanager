@@ -72,8 +72,8 @@
 						<input type="text" id="student-f4-select" name="f4" value="${f4}" placeholder="学生情報を入力してください"
 							maxlength="10" required style="width: 100%; height: 40px;
 							border: 1px solid #ccc; border-radius: 5px;">
+						<div class="mt-2 text-warning">${errors.get("f4")}</div>
 					</div>
-					<div class="mt-2 text-warning">${errors.get("f6")}</div>
 					<div class="col-2">
 						<button class="btn btn-secondary" id="filter-button"
 							style="background-color: #69727a; border: none;">
@@ -85,8 +85,8 @@
 		</section>
 
 		<c:choose>
-			<c:when test="${subjects.size()>0}">
-				<div>氏名：${subjects.name}(${f4})</div>
+			<c:when test="${students.size()>0}">
+				<div>氏名：${name}(${f4})</div>
 				<table class="table table-hover">
 					<tr>
 						<th>科目名</th>
@@ -95,18 +95,18 @@
 						<th>点数</th>
 					</tr>
 
-					<c:forEach var ="subject" items="${subjects}">
+					<c:forEach var ="student" items="${students}">
 						<tr>
-							<td>${subject.entyear}</td>
-							<td>${subject.classNum}</td>
-							<td>${subject.no}</td>
 							<td>${subject.name}</td>
+							<td>${subject.cd}</td>
+							<td>${no}</td>
+							<td>${ponint}</td>
 						</tr>
 					</c:forEach>
 				</table>
 			</c:when>
 			<c:otherwise>
-				<div>氏名：${subjects.name}(${f4})</div>
+				<div>氏名：${name}(${f4})</div>
 				<div>成績情報が存在しませんでした</div>
 			</c:otherwise>
 		</c:choose>
