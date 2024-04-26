@@ -59,24 +59,25 @@
 					<div class="col-2 text-center">
 						<button class="btn btn-secondary" id="filter-button" >検索</button>
 					</div>
-<<<<<<< HEAD
+
 			<div class="mt-2 text-warning">${errors.get("f1")}</div>
 		</div>
 		</form>
-	<c:choose>
-		<c:when test="${tests.size()>0}">
-			<div>科目：${sub.name} (${num}回)</div>
-			<form method="post" action="TestRegistExecute.action" >
-			<table class="table table-hover">
-				<tr>
-					<th>入学年度</th>
-					<th>クラス</th>
-					<th>学生番号</th>
-					<th>氏名</th>
-					<th>点数</th>
-					</tr>
 
-					<c:forEach var ="te" items="${tests}">
+			<c:choose>
+				<c:when test="${tests.size()>0}">
+					<div>科目：${sub.name} (${num}回)</div>
+					<form method="post" action="TestRegistExecute.action" >
+						<table class="table table-hover">
+							<tr>
+								<th>入学年度</th>
+								<th>クラス</th>
+								<th>学生番号</th>
+								<th>氏名</th>
+								<th>点数</th>
+							</tr>
+
+			<c:forEach var ="te" items="${tests}">
 						<tr>
 							<td>${te.student.entyear}</td>
 							<td>${te.classNum}</td>
@@ -99,57 +100,6 @@
 
 						</tr>
 						</c:forEach>
-
-
-			</table>
-		<input type="hidden" name="f1" value="${entYear}">
-		<input type="hidden" name="f2" value="${classnum}">
-		<input type="hidden" name="f3" value="${subject}">
-		<input type="hidden" name="f4" value="${num}">
- 		<input type="submit" value="登録して終了">
- 		</form>
-			</c:when>
-
-
-
-			<c:when test="${tests.size() == 0}">
-=======
-					<div class="mt-2 text-warning">${errors.get("f1")}</div>
-				</div>
-			</form>
-			<c:choose>
-				<c:when test="${tests.size()>0}">
->>>>>>> branch 'master' of https://github.com/ml02100825/Scoremanager.git
-					<div>科目：${sub.name} (${num}回)</div>
-					<form method="post" action="TestRegistExecute.action" >
-						<table class="table table-hover">
-							<tr>
-								<th>入学年度</th>
-								<th>クラス</th>
-								<th>学生番号</th>
-								<th>氏名</th>
-								<th>点数</th>
-							</tr>
-
-<<<<<<< HEAD
-					<c:forEach var ="stu" items="${students}">
-=======
-							<c:forEach var ="tests" items="${tests}">
-								<tr>
-									<td>${tests.student.entyear}</td>
-									<td>${tests.classNum}</td>
-									<td>${tests.student.no}</td>
-									<td>${tests.student.name}</td>
-									<td><input type="text" name="point_${tests.student.no}" value="${tests.point}">
-										<c:if test="${not empty pointerrors }">
-											<c:forEach var="pointerrors" items="${pointerrors}">
-												<span style="color:#ffd9a3;">${pointerrors}</span>
-											</c:forEach>
-											<div style="margin-bottom:10px;"></div>
-										</c:if>
-									</td>
-								</tr>
-						</c:forEach>
 					</table>
 					<input type="hidden" name="f1" value="${entYear}">
 					<input type="hidden" name="f2" value="${classnum}">
@@ -164,9 +114,18 @@
 				<div>科目：${sub.name} (${num}回)</div>
 				<form method="post" action="TestRegistExecute.action" >
 					<table class="table table-hover">
->>>>>>> branch 'master' of https://github.com/ml02100825/Scoremanager.git
-						<tr>
-<<<<<<< HEAD
+							<tr>
+							<th>入学年度</th>
+							<th>クラス</th>
+							<th>学生番号</th>
+							<th>氏名</th>
+							<th>点数</th>
+
+						</tr>
+
+						<c:forEach var ="stu" items="${students}">
+							<tr>
+
 							<td>${stu.entyear}</td>
 							<td>${stu.classNum}</td>
 							<td>${stu.no}</td>
@@ -181,31 +140,7 @@
 				</c:if>
 				</c:if>
 				</td>
-
-=======
-							<th>入学年度</th>
-							<th>クラス</th>
-							<th>学生番号</th>
-							<th>氏名</th>
-							<th>点数</th>
->>>>>>> branch 'master' of https://github.com/ml02100825/Scoremanager.git
-						</tr>
-
-						<c:forEach var ="students" items="${students}">
-							<tr>
-								<td>${students.entyear}</td>
-								<td>${students.classNum}</td>
-								<td>${students.no}</td>
-								<td>${students.name}</td>
-								<td><input type="text" name="point_${students.no}">
-									<c:if test="${not empty pointerrors }">
-										<c:forEach var="pointerrors" items="${pointerrors}">
-											<span style="color:#ffd9a3;">${pointerrors}</span>
-										</c:forEach>
-										<div style="margin-bottom:10px;"></div>
-									</c:if>
-								</td>
-							</tr>
+				</tr>
 						</c:forEach>
 
 
