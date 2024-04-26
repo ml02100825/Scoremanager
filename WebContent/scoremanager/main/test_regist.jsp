@@ -84,7 +84,9 @@
 									<td><input type="text" name="point_${tests.student.no}" value="${tests.point}">
 										<c:if test="${not empty pointerrors }">
 											<c:forEach var="pointerrors" items="${pointerrors}">
-												<div><span style="color:#ffd9a3;">${pointerrors}</span></div>
+												<div>
+													<span style="color:#ffd9a3;">${pointerrors}</span>
+												</div>
 											</c:forEach>
 										</c:if>
 									</td>
