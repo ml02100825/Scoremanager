@@ -9,12 +9,14 @@
 	</c:param>
 
 	<c:param name="content">
-		<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">科目情報削除</h2>
-		<p  style="text-align: center;">
-			<label style="width: 100%; background-color: #8cc3a9;">
-				削除が完了しました
-			</label>
-		</p>
-		<a href="SubjectList.action">科目一覧</a>
+		<section class="me-4">
+			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">科目情報削除</h2>
+			<p  style="text-align: center;">
+				<label style="width: 100%; background-color: #8cc3a9;">
+					削除が完了しました
+				</label>
+			</p>
+			<a href="SubjectList.action">科目一覧</a>
+		</section>
 	</c:param>
 </c:import>
