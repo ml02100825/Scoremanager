@@ -55,7 +55,7 @@ public class TestListStudentExecuteAction extends Action{
 		request.setAttribute("ent_year_set", entYearSet);
 
 		student.setNo(studentno);
-		subject.getCd();
+		subject.setCd();
 		school.setCd(teacher.getSchool().getCd());
 		int no=test.getNo();
 		Test t=tDao.get(student, subject, school, no);
