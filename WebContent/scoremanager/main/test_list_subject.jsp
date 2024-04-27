@@ -94,62 +94,54 @@
 
 		</section>
 
-		<c:choose>
-			<c:when test="${tests.size()>0}">
-				<div>科目：${subject.name}</div>
-				<table class="table table-hover">
-					<tr>
-						<th>入学年度</th>
-						<th>クラス</th>
-						<th>学生番号</th>
-						<th>氏名</th>
-						<th>1回目</th>
-						<th>2回目</th>
-					</tr>
-					<c:forEach var="tests" items="${tests}">
-						<tr>
-							<td>${test.student.entyear}</td>
-							<td>${test.classNum}</td>
-							<td>${test.student.no}</td>
-							<td>${test.student.name}</td>
-							<c:choose>
-								<c:when test="${test.no == 1}">
-									<td>${test.point}</td>
-									<td></td>
-								</c:when>
-								<c:otherwise>
-									<td></td>
-									<td>${test.point}</td>
-								</c:otherwise>
-							</c:choose>
-							<td>${student.entyear}</td>
-							<td>${student.classNum}</td>
-							<td>${student.no}</td>
-							<td>${student.name}</td>
-							<td><c:choose>
-									<c:when test="${point1 != null}">
-								${point1}
+<c:choose>
+	<c:when test="${tests.size() > 0}">
+		<div>科目：${subject.name}</div>
+		<table class="table table-hover">
+			<tr>
+				<th>入学年度</th>
+				<th>クラス</th>
+				<th>学生番号</th>
+				<th>氏名</th>
+				<th>1回目</th>
+				<th>2回目</th>
+			</tr>
+
+			<c:forEach var="test" items="${tests}">
+				<tr>
+					<td>${test.student.entyear}</td>
+					<td>${test.classNum}</td>
+					<td>${test.student.no}</td>
+					<td>${test.student.name}</td>
+					<td>
+						<c:choose>
+							<c:when test="${test.no == 1}">
+								${test.point}
 							</c:when>
-									<c:otherwise>
+							<c:otherwise>
 								-
 							</c:otherwise>
-								</c:choose></td>
-							<td><c:choose>
-									<c:when test="${point2 != null}">
-								${point2}
+						</c:choose>
+					</td>
+					<td>
+						<c:choose>
+							<c:when test="${test.no == 2}">
+								${test.point}
 							</c:when>
-									<c:otherwise>
+							<c:otherwise>
 								-
 							</c:otherwise>
-								</c:choose></td>
-						</tr>
-					</c:forEach>
-				</table>
-			</c:when>
-			<c:otherwise>
-				<div>学生情報が存在しませんでした</div>
-			</c:otherwise>
-		</c:choose>
+						</c:choose>
+					</td>
+				</tr>
+			</c:forEach>
+		</table>
+	</c:when>
+	<c:otherwise>
+		<div>科目名：${subjects.name}(${f4})</div>
+		<div>成績情報が存在しませんでした</div>
+	</c:otherwise>
+</c:choose>
 
 
 	</c:param>
