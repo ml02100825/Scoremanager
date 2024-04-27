@@ -9,12 +9,19 @@
 	</c:param>
 
 	<c:param name="content">
-		<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">学生情報変更</h2>
-		<p  style="text-align: center;">
-			<label style="width: 100%; background-color: #8cc3a9;">
-				変更が完了しました
-			</label>
-		</p>
-		<a href="StudentList.action">学生一覧</a>
+		<section class="me-4">
+
+			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">学生情報変更</h2>
+
+			<p  style="text-align: center;">
+				<label style="width: 100%; background-color: #8cc3a9;">
+					変更が完了しました
+				</label>
+			</p>
+
+			<a href="StudentList.action">学生一覧</a>
+
+		</section>
 	</c:param>
+
 </c:import>
