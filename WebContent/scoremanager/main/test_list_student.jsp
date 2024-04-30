@@ -33,8 +33,8 @@
 						<div class="mt-2 text-warning">${errors.get("f1")}</div>
 					</div>
 					<div class="col-2">
-						<label class="form-label" for="student-f2-select">クラス</label> <select
-							class="form-select" id="student-f2-select" name="f2">
+						<label class="form-label" for="student-f2-select">クラス</label>
+						<select class="form-select" id="student-f2-select" name="f2">
 							<option value="0">--------</option>
 							<c:forEach var="classNum" items="${class_num_set}">
 								<option value="${classNum}"<c:if test="${classNum==f2}">selected</c:if>>${classNum}</option>
