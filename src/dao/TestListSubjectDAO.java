@@ -100,11 +100,6 @@ public class TestListSubjectDAO extends DAO{
 				}
 			}
 		}
-		// とってきたデータの数分ループ
-
-
-
-
 		// listを返す
 		return list;
 	}

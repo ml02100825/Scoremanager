@@ -142,8 +142,5 @@
 		<div>成績情報が存在しませんでした</div>
 	</c:otherwise>
 </c:choose>
-
-
 	</c:param>
-
 </c:import>
