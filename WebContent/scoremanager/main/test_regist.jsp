@@ -2,22 +2,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <c:import url="/common/base.jsp">
 	<c:param name = "title">
 		得点管理システム
 	</c:param>
-
 	<c:param name="scripts"></c:param>
-
 	<c:param name="content">
 		<section class="me-4">
-
 			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">成績管理</h2>
+			<div class="my-2 text-end px-4">
+			</div>
 
-			<div class="my-2 text-end px-4"></div>
-
-			<form method="get">
+			<form method="get" action="TestRegist.action">
 				<div class="row border mx-3 mb-3 py-2 align-items-center rounded" id="filter">
 					<div class="col-2">
 						<label class="form-label" for="student-f1-select">入学年度 </label>
@@ -29,7 +25,6 @@
 							</c:forEach>
 						</select>
 					</div>
-
 					<div class="col-2">
 						<label class="form-label" for="student-f2-select">クラス</label>
 						<select class="form-select " id="student-f2-select" name="f2">
@@ -40,7 +35,6 @@
 							</c:forEach>
 						</select>
 					</div>
-
 					<div class="col-4">
 						<label class="form-label" for="student-f3-select">科目</label>
 						<select class="form-select " id="student-f3-select" name="f3">
@@ -52,7 +46,6 @@
 							</c:forEach>
 						</select>
 					</div>
-
 					<div class="col-2">
 						<label class="form-label" for="student-f4-select">回数</label>
 						<%-- パラメーターf3が存在している場合checkedを追記 --%>
@@ -62,15 +55,13 @@
    							<option value="2" <c:if test="${'2' == f4}">selected</c:if>>2</option>
 						</select>
 					</div>
-
 					<div class="col-2 text-center">
-						<button class="btn btn-secondary" id="filter-button" >検索</button>
-					</div>
 
+						<button class="btn btn-secondary" name ="button" id="filter-button"  value ="serch">検索</button>
+					</div>
 					<div class="mt-2 text-warning">${errors.get("f1")}</div>
 				</div>
 			</form>
-
 			<c:choose>
 				<c:when test="${tests.size()>0}">
 					<div>科目：${sub.name} (${num}回)</div>
@@ -83,7 +74,6 @@
 								<th>氏名</th>
 								<th>点数</th>
 							</tr>
-
 							<c:forEach var ="tests" items="${tests}">
 								<tr>
 									<td>${tests.student.entyear}</td>
@@ -91,6 +81,7 @@
 									<td>${tests.student.no}</td>
 									<td>${tests.student.name}</td>
 									<td><input type="text" name="point_${tests.student.no}" value="${tests.point}">
+										<c:if test="${tests.student.no eq StudentNo }">
 										<c:if test="${not empty pointerrors }">
 											<c:forEach var="pointerrors" items="${pointerrors}">
 												<div>
@@ -98,11 +89,11 @@
 												</div>
 											</c:forEach>
 										</c:if>
+										</c:if>
 									</td>
 								</tr>
 							</c:forEach>
 						</table>
-
 						<input type="hidden" name="f1" value="${entYear}">
 						<input type="hidden" name="f2" value="${classnum}">
 						<input type="hidden" name="f3" value="${subject}">
@@ -112,7 +103,6 @@
 							padding: 8px 15px; margin-bottom: 20px;">
 					</form>
 				</c:when>
-
 				<c:when test="${tests.size() == 0}">
 					<div>科目：${sub.name} (${num}回)</div>
 					<form method="post" action="TestRegistExecute.action" >
@@ -124,7 +114,6 @@
 								<th>氏名</th>
 								<th>点数</th>
 							</tr>
-
 							<c:forEach var ="students" items="${students}">
 								<tr>
 									<td>${students.entyear}</td>
@@ -132,16 +121,17 @@
 									<td>${students.no}</td>
 									<td>${students.name}</td>
 									<td><input type="text" name="point_${students.no}">
+										<c:if test="${student.no eq StudentNo }">
 										<c:if test="${not empty pointerrors }">
 											<c:forEach var="pointerrors" items="${pointerrors}">
 												<div><span style="color:#ffd9a3;">${pointerrors}</span></div>
 											</c:forEach>
 										</c:if>
+										</c:if>
 									</td>
 								</tr>
 							</c:forEach>
 						</table>
-
 						<input type="hidden" name="f1" value="${entYear}">
 						<input type="hidden" name="f2" value="${classnum}">
 						<input type="hidden" name="f3" value="${subject}">
@@ -152,8 +142,6 @@
 					</form>
 				</c:when>
 			</c:choose>
-
 		</section>
 	</c:param>
-
 </c:import>
