@@ -1,5 +1,4 @@
 package dao;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,8 +10,6 @@ import bean.School;
 import bean.Student;
 import bean.Subject;
 import bean.Test;
-
-
 public class TestDAO extends DAO{
 	private String baseSql = " select * from test where school_cd=?  ";
 	// フィルター後のリストへの格納処理をするメソッド
@@ -39,8 +36,6 @@ public class TestDAO extends DAO{
 			}}catch(SQLException | NullPointerException e){
 				e.printStackTrace();
 			}
-
-
 		// listを返す
 		return list;
 	}
@@ -57,30 +52,20 @@ public class TestDAO extends DAO{
 		String condition = " and class_num = ? and subject_cd = ? and no = ?";
 		// SQL文のソート
 		String order = " order by student_no asc ";
-
 		// SQL文の在学フラグ条件
 		String conditionIsAttend = "";
-
-
 		try{
 			// プリペアードステートメントにSQｌ文をセット
 			statement = connection.prepareStatement(baseSql + condition + conditionIsAttend	 + order);
 			// プリペアードステートメントに学校コードをバインド
 			statement.setString(1, school.getCd());
-
 			// プリペアードステートメントに入学年度をバインド
-
-
 			// プリペアードステートメントにクラス番号をバインド
 			statement.setString(2, classNum);
-
 			statement.setString(3, subject.getCd());
-
 			statement.setInt(4, num);
-
 			// プライベートステートメントを実行
 			rSet = statement.executeQuery();
-
 			// リストへの格納処理を実行
 			list = postFilter(rSet, school);
 		}catch(Exception e){
@@ -89,7 +74,6 @@ public class TestDAO extends DAO{
 			if(statement != null){
 				try{
 					statement.close();
-
 				} catch(SQLException sqle){
 					throw sqle;
 				}
@@ -103,36 +87,23 @@ public class TestDAO extends DAO{
 			}
 		}
 		// とってきたデータの数分ループ
-
-
-
-
 		// listを返す
 		return list;
 	}
-
 	public Test get(Student student, Subject subject, School school, int no) throws Exception{
-
-
 		Connection  connection = getConnection();
-
 		PreparedStatement statement = null;
 		Test test = new Test();
+
 
 		try{
 
 			statement = connection.prepareStatement("select * from test where no = ? and student_no = ? and subject_cd = ? and school_cd = ? ");
-
 			statement.setInt(1, no);
 			statement.setString(2, student.getNo());
 			statement.setString(3, subject.getCd());
 			statement.setString(4, school.getCd());
-
-
 			ResultSet rSet = statement.executeQuery();
-
-
-
 			if(rSet.next()){
 				StudentDAO stuDao = new StudentDAO();
 				SubjectDAO subDao = new SubjectDAO();
@@ -146,7 +117,8 @@ public class TestDAO extends DAO{
 
 
 			}else{
-				student = null;
+
+				test = null;
 			}
 		}catch (Exception e){
 			throw e;
@@ -167,49 +139,36 @@ public class TestDAO extends DAO{
 			}
 		}
 			return test;
-
-
 	}
-
 	public boolean save(Test test, Connection connection)throws Exception{
-
-
 		PreparedStatement statement  = null;
-
 		int  count = 0;
 		try{
 
 			Test old = get(test.getStudent(), test.getSubject(), test.getSchool(), test.getNo());
-			if (old == null){
-				statement = connection.prepareStatement(
-						"insert into test(student_no, subject_cd, school_cd, point, no,class_num) values(?, ? ,?, null ,?,?)");
+
+
+			if ( old== null){
+				statement = connection.prepareStatement("insert into test(student_no, subject_cd, school_cd, point, no,class_num) values(?, ? ,?, ? ,?,?)");
 
 				statement.setString(1, test.getStudent().getNo());
 				statement.setString(2, test.getSubject().getCd());
 				statement.setString(3, test.getSchool().getCd());
 				statement.setInt(4, test.getPoint());
-
 				statement.setInt(5, test.getNo());
 				statement.setString(6, test.getClassNum());
 			}else{
 				statement = connection.prepareStatement("update test set point = ? where student_no = ? and subject_cd = ? and school_cd = ? and no = ?");
-
 				statement.setInt(1, test.getPoint());
 				statement.setString(2, test.getStudent().getNo());
 				statement.setString(3, test.getSubject().getCd());
 				statement.setString(4, test.getSchool().getCd());
-
 				statement.setInt(5, test.getNo());
-
-
-
 			}
 			count =statement.executeUpdate();
 		}catch(Exception e){
 			throw e;
 		}
-
-
 		if (count > 0) {
 			return true;
 		}else {
@@ -218,9 +177,11 @@ public class TestDAO extends DAO{
 
 	}
 
-	public List<Test> save(List<Test> list) throws Exception {
+
+	public boolean save(List<Test> list) throws Exception {
 		// リストを初期化
 
+		int count = 0;
 		// コネクションを確率
 		Connection connection = getConnection();
 
@@ -232,28 +193,26 @@ public class TestDAO extends DAO{
 		String condition = "and ent_year = ?  and class_num = ? and subject_cd = ? and no = ?";
 		// SQL文のソート
 		String order = " order by no asc ";
-
 		// SQL文の在学フラグ条件
 		String conditionIsAttend = "";
 		boolean t = false;
-
 		try{
 			int size = list.size();
 			for(int i = 0; i < size; i++){
 				t = save(list.get(i), connection);
+				if (t = true){
+					count++;
+				}
 			}
 
 
-
 			// リストへの格納処理を実行
-
 		}catch(Exception e){
 			throw e;
 		} finally{
 			if(statement != null){
 				try{
 					statement.close();
-
 				} catch(SQLException sqle){
 					throw sqle;
 				}
@@ -270,9 +229,11 @@ public class TestDAO extends DAO{
 
 
 
-
-		// listを返す
-		return list;
+		if(count > 0){
+		return true;
+		}else{
+			return false;
+		}
 	}
 	public boolean delete(Student student) throws Exception {
 		// コネクションを確立
@@ -281,7 +242,6 @@ public class TestDAO extends DAO{
 		PreparedStatement statement = null;
 		// 実行件数
 		int count = 0;
-
 		try {
 			// プリペアードステートメントにDELETE文をセット
 			statement = connection.prepareStatement("update student set is_active = false where no = ?");
@@ -309,7 +269,6 @@ public class TestDAO extends DAO{
 				}
 			}
 		}
-
 		if (count > 0) {
 			// 実行件数が1件以上ある場合
 			return true;
@@ -318,7 +277,4 @@ public class TestDAO extends DAO{
 			return false;
 		}
 	}
-
-
-
 }
