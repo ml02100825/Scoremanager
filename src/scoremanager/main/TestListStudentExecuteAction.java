@@ -56,20 +56,17 @@ public class TestListStudentExecuteAction extends Action{
 	    request.setAttribute("class_num_set", list);
 		request.setAttribute("ent_year_set", entYearSet);
 
-		List<Test> name=testliststudent.filter(s);
-		request.setAttribute("test", name);
-		System.out.print(name);
-
     	if(s==null){
     		errors.put("f4", "学生番号が存在しません");
 			request.setAttribute("errors", errors);
 			request.getRequestDispatcher("TestList.action").forward(request, response);
-			return;
+    	}else{
+    		List<Test> name=testliststudent.filter(s);
+    		request.setAttribute("test", name);
+    		System.out.print(name);
+    		request.setAttribute("f4", studentno);
+        	request.setAttribute("name",sDao.get(studentno).getName());
+        	request.getRequestDispatcher("test_list_student.jsp").forward(request, response);
     	}
-
-    	request.setAttribute("f4", studentno);
-    	request.setAttribute("name",sDao.get(studentno).getName());
-    	request.getRequestDispatcher("test_list_student.jsp").forward(request, response);
 	}
-
 }
