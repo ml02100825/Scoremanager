@@ -1,3 +1,4 @@
+
 <%-- 成績登録JSP --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -22,7 +23,6 @@
 					<div class="col-2">
 						科目情報
 					</div>
-
 					<div class="col-2">
 						<label class="form-label" for="student-f1-select">入学年度 </label>
 						<select class="form-select" id="student-f1-select" name="f1">
@@ -33,10 +33,9 @@
 						</select>
 						<div class="mt-2 text-warning">${errors.get("f1")}</div>
 					</div>
-
 					<div class="col-2">
-						<label class="form-label" for="student-f2-select">クラス</label>
-						<select class="form-select" id="student-f2-select" name="f2">
+						<label class="form-label" for="student-f2-select">クラス</label> <select
+							class="form-select" id="student-f2-select" name="f2">
 							<option value="0">--------</option>
 							<c:forEach var="classNum" items="${class_num_set}">
 								<option value="${classNum}"<c:if test="${classNum==f2}">selected</c:if>>${classNum}</option>
@@ -44,7 +43,6 @@
 						</select>
 						<div class="mt-2 text-warning">${errors.get("f2")}</div>
 					</div>
-
 					<div class="col-4">
 						<label class="form-label" for="student-f3-select">科目</label>
 						<select class="form-select" id="student-f3-select" name="f3">
@@ -55,7 +53,6 @@
 						</select>
 						<div class="mt-2 text-warning">${errors.get("f3")}</div>
 					</div>
-
 					<div class="col-2">
 						<button class="btn btn-secondary" id="filter-button"
 							style="background-color: #69727a; border: none;">
@@ -72,7 +69,6 @@
 					<div class="col-2">
 						学生情報
 					</div>
-
 					<div class="col-4">
 						<label class="form-label" for="student-f4-select">学生番号</label>
 						<c:forEach var="student" items="${student_set}">
@@ -83,7 +79,6 @@
 							border: 1px solid #ccc; border-radius: 5px;">
 						<div class="mt-2 text-warning">${errors.get("f4")}</div>
 					</div>
-
 					<div class="col-2">
 						<button class="btn btn-secondary" id="filter-button"
 							style="background-color: #69727a; border: none;">
@@ -97,7 +92,6 @@
 		</section>
 
 		<c:choose>
-
 			<c:when test="${test.size()>0}">
 				<div>氏名：${name}(${f4})</div>
 				<table class="table table-hover">
@@ -108,12 +102,12 @@
 						<th>点数</th>
 					</tr>
 
-					<c:forEach var ="student" items="${test}">
+					<c:forEach var ="test" items="${test}">
 						<tr>
-							<td>${student.subject.name}</td>
-							<td>${student.subject.cd}</td>
-							<td>${student.no}</td>
-							<td>${student.point}</td>
+							<td>${test.subjectName}</td>
+							<td>${test.subjectCd}</td>
+							<td>${test.num}</td>
+							<td>${test.point}</td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -123,7 +117,6 @@
 				<div>氏名：${name}(${f4})</div>
 				<div>成績情報が存在しませんでした</div>
 			</c:otherwise>
-
 		</c:choose>
 
 	</c:param>

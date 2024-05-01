@@ -33,8 +33,8 @@
 					</div>
 
 					<div class="col-2">
-						<label class="form-label" for="student-f2-select">クラス</label>
-						<select class="form-select" id="student-f2-select" name="f2">
+						<label class="form-label" for="student-f2-select">クラス</label> <select
+							class="form-select" id="student-f2-select" name="f2">
 							<option value="0">--------</option>
 							<c:forEach var="classNum" items="${class_num_set}">
 								<option value="${classNum}"
@@ -106,33 +106,18 @@
 			</tr>
 
 			<c:forEach var="test" items="${tests}">
+
+
 				<tr>
-					<td>${test.student.entyear}</td>
+					<td>${test.entYear}</td>
 					<td>${test.classNum}</td>
-					<td>${test.student.no}</td>
-					<td>${test.student.name}</td>
-					<td>
-						<c:choose>
-							<c:when test="${test.no == 1}">
-								${test.point}
-							</c:when>
-							<c:otherwise>
-								-
-							</c:otherwise>
-						</c:choose>
-					</td>
-					<td>
-						<c:choose>
-							<c:when test="${test.no == 2}">
-								${test.point}
-							</c:when>
-							<c:otherwise>
-								-
-							</c:otherwise>
-						</c:choose>
-					</td>
+					<td>${test.studentNo}</td>
+					<td>${test.studentName}</td>
+					<td>${test.getPoint(1)}</td>
+					<td>${test.getPoint(2)}</td>
 				</tr>
-			</c:forEach>
+				</c:forEach>
+
 		</table>
 	</c:when>
 	<c:otherwise>

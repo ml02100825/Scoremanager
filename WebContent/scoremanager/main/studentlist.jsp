@@ -2,8 +2,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <c:import url="/common/base.jsp">
+
 	<c:param name = "title">
 		得点管理システム
 	</c:param>
@@ -60,11 +60,8 @@
 			</form>
 
 			<c:choose>
-
 				<c:when test="${students.size()>0}">
-
 					<div>検索結果：${students.size()}件</div>
-
 					<table class="table table-hover">
 						<tr>
 							<th>入学年度</th>
@@ -82,6 +79,7 @@
 								<td>${student.no}</td>
 								<td>${student.name}</td>
 								<td>${student.classNum}</td>
+
 								<td class="text-center">
 									<c:choose>
 										<c:when test="${student.isAttend}">
@@ -99,7 +97,6 @@
 							</tr>
 						</c:forEach>
 					</table>
-
 					<div hidden>${student.isActive}</div>
 				</c:when>
 
