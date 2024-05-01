@@ -53,7 +53,9 @@
                         <button class="btn btn-secondary" id="filter-button">登録して終了</button>
                     </div>
                     <div class="mt-2 text-warning">${errors.f4}</div>
+
                     <a href="StudentList.action">戻る</a>
+
                 </div>
             </form>
 
