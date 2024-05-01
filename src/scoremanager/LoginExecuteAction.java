@@ -15,21 +15,20 @@ import tool.Action;
 public class LoginExecuteAction extends Action {
 
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		//ローカル変数の宣言 1
 		String url = "";
 		String id = "";
 		String password = "";
-		TeacherDAO teacherDAO = new TeacherDAO();
+		TeacherDAO teacherDao = new TeacherDAO();
 		Teacher teacher = null;
 
 		//リクエストパラメータ―の取得 2
-		id = request.getParameter("id");// 教員ID
-		password = request.getParameter("password");//パスワード
+		id = req.getParameter("id");// 教員ID
+		password = req.getParameter("password");//パスワード
 
 		//DBからデータ取得 3
-		teacher = teacherDAO.login(id, password);//教員データ取得
-		System.out.println(teacher);
+		teacher = teacherDao.login(id, password);//教員データ取得
 
 		//ビジネスロジック 4
 		//DBへデータ保存 5
@@ -38,7 +37,7 @@ public class LoginExecuteAction extends Action {
 		//条件で手順4~7の内容が分岐
 		if (teacher != null) {// 認証成功の場合
 			// セッション情報を取得
-			HttpSession session = request.getSession(true);
+			HttpSession session = req.getSession(true);
 			// 認証済みフラグを立てる
 			teacher.setAuthenticated(true);
 			// セッションにログイン情報を保存
@@ -46,20 +45,19 @@ public class LoginExecuteAction extends Action {
 
 			//リダイレクト
 			url = "main/Menu.action";
-			response.sendRedirect(url);
+			res.sendRedirect(url);
 		} else {
 			// 認証失敗の場合
 			// エラーメッセージをセット
 			List<String> errors = new ArrayList<>();
 			errors.add("IDまたはパスワードが確認できませんでした");
-			request.setAttribute("errors", errors);
+			req.setAttribute("errors", errors);
 			// 入力された教員IDをセット
-			request.setAttribute("id", id);
-			System.out.print(errors);
+			req.setAttribute("id", id);
 
 			//フォワード
 			url = "login.jsp";
-			request.getRequestDispatcher(url).forward(request, response);
+			req.getRequestDispatcher(url).forward(req, res);
 		}
 
 //		req.getRequestDispatcher(url).forward(req, res);
