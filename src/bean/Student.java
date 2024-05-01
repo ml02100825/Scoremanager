@@ -1,10 +1,3 @@
-/**
- *
- */
-/**
- * @author h_mitukawa
- *
- */
 package bean;
 
 import java.time.LocalDate;
@@ -49,6 +42,7 @@ public class Student implements java.io.Serializable {
 	public School getSchool(){
 		return school;
 	}
+
 
 
 	public void setNo(String no){
