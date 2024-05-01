@@ -6,6 +6,7 @@
  *
  */
 package scoremanager.main;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,12 +26,16 @@ import dao.StudentDAO;
 import dao.SubjectDAO;
 import dao.TestDAO;
 import tool.Action;
+
 public class TestRegistAction extends Action{
+
 	public void execute(
 			HttpServletRequest request, HttpServletResponse response
 			)throws Exception{
 		// セッションを取得
 		HttpSession session = request.getSession();
+
+
 		// セッションからログインしている教員情報を取得
 		Teacher teacher = (Teacher)session.getAttribute("user");
 		String entYearStr="";							// 入力された年度
@@ -62,14 +67,23 @@ public class TestRegistAction extends Action{
 		System.out.println("4：" + numStr);
 		System.out.println(subject);
 		Subject sub = subDao.get(subject, teacher.getSchool());
+
+
+
+
+
 		// DBからデータ取得
+
 		// ログインユーザーの学校コードをもとにクラス番号一覧を表示(その学校に存在するクラスのみ表示させたいから)
 		List<String> cNumList = cNumDao.filter(teacher.getSchool());
 		List<Subject> SubList = subDao.filter(teacher.getSchool());
+
+
 		if (entYearStr != null) {
 			// 数値に変換
 			entyear = Integer.parseInt(entYearStr);
 		}
+
 		if(numStr != null){
 			num = Integer.parseInt(numStr);
 		}
@@ -78,6 +92,7 @@ public class TestRegistAction extends Action{
 			request.setAttribute("entYear", entyear);
 			request.setAttribute("subject", subject);
 			request.setAttribute("sub", sub);
+
 			request.setAttribute("num", numStr);
 			request.setAttribute("classnum", classNum);
 			tests = testDao.filter(teacher.getSchool(), entyear, classNum, sub , num );
@@ -121,23 +136,42 @@ public class TestRegistAction extends Action{
 		for (int i =year -10	; i < year + 1; i++){
 			entYearSet.add(i);
 		}
+
 		// レスポンス値をセット
 		// リクエストに入学年度をセット
 		request.setAttribute("f1", entyear);
 		// リクエストにクラス番号をセット
 		request.setAttribute("f2", classNum);
+
 		request.setAttribute("f3", subject);
 		request.setAttribute("f4", numStr);
+
+
 		// リクエストに学生リストをセット
 		request.setAttribute("tests", tests);
+
+
+
 		// リクエストにデータをセット
 		request.setAttribute("students", students);
 		request.setAttribute("class_num_set", cNumList);
 		request.setAttribute("subject_set", SubList);
+
 		request.setAttribute("ent_year_set", entYearSet);
+
+
 		// JSPにフォワード
 		request.getRequestDispatcher("test_regist.jsp").forward(request, response);
+
+
+
+
+
+
+
 	}
 	private void SetRequestData(HttpServletRequest request, HttpServletResponse response){
+
 	}
+
 }

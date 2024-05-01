@@ -117,7 +117,8 @@
 					</form>
 				</c:when>
 
-				<c:when test="${tests.size() == 0}">
+				<c:when test="${tests.size() <= 0}">
+
 					<div>科目：${sub.name} (${num}回)</div>
 					<form method="post" action="TestRegistExecute.action" >
 						<table class="table table-hover">
@@ -136,7 +137,7 @@
 									<td>${students.no}</td>
 									<td>${students.name}</td>
 									<td><input type="text" name="point_${students.no}">
-										<c:if test="${student.no eq StudentNo }">
+										<c:if test="${students.no eq StudentNo }">
 										<c:if test="${not empty pointerrors }">
 											<c:forEach var="pointerrors" items="${pointerrors}">
 												<div><span style="color:#ffd9a3;">${pointerrors}</span></div>
@@ -162,3 +163,5 @@
 
 		</section>
 	</c:param>
+
+</c:import>
