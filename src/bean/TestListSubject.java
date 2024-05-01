@@ -11,7 +11,7 @@ public class TestListSubject implements Serializable {
 	private Map<Integer, Integer> points; // 正しいMapの宣言
 
 
-	
+
 	// Getter and Setter for entYear
 	public int getEntYear() {
 		return entYear;
@@ -104,7 +104,6 @@ public class TestListSubject implements Serializable {
 	public void setStudentName(String studentname) {
 		this.studentName = studentname;
 	}
-
 
 
 	public String getClassNum() {
