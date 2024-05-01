@@ -102,12 +102,12 @@
 						<th>点数</th>
 					</tr>
 
-					<c:forEach var ="student" items="${test}">
+					<c:forEach var ="test" items="${test}">
 						<tr>
-							<td>${student.subject.name}</td>
-							<td>${student.subject.cd}</td>
-							<td>${student.no}</td>
-							<td>${student.point}</td>
+							<td>${test.subjectName}</td>
+							<td>${test.subjectCd}</td>
+							<td>${test.num}</td>
+							<td>${test.point}</td>
 						</tr>
 					</c:forEach>
 				</table>

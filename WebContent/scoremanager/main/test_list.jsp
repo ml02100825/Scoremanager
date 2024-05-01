@@ -95,9 +95,11 @@
 			</div>
 
 		</section>
+
 		<p style="color: #64d7f2;">
 			科目情報を選択または学生情報を入力して検索ボタンをクリックしてください
 		</p>
+
 	</c:param>
 
 </c:import>

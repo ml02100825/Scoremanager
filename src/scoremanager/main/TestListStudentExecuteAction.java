@@ -15,6 +15,7 @@ import bean.Student;
 import bean.Subject;
 import bean.Teacher;
 import bean.Test;
+import bean.TestListStudent;
 import dao.ClassNumDAO;
 import dao.StudentDAO;
 import dao.SubjectDAO;
@@ -36,8 +37,8 @@ public class TestListStudentExecuteAction extends Action{
     	School school=new School();
     	Subject subject=new Subject();
     	Student student = new Student();
-    	studentno = request.getParameter("f4");
-    	Student s =  sDao.get(studentno);
+
+
     	ClassNumDAO cNumDao=new ClassNumDAO();
 		SubjectDAO subjectDao = new SubjectDAO();
 		LocalDate todaysDate = LocalDate.now();
@@ -47,8 +48,9 @@ public class TestListStudentExecuteAction extends Action{
 		for (int i =year -10	; i < year + 1; i++){
 			entYearSet.add(i);
 		}
-		TestListStudentDAO testliststudent=new TestListStudentDAO();
-
+    	studentno = request.getParameter("f4");
+		TestListStudentDAO TestStuDao=new TestListStudentDAO();
+	  	student =  sDao.get(studentno);
 		List<String> list = cNumDao.filter(teacher.getSchool());
 	    // 科目名のリストを取得
 	    List<Subject> subjects = subjectDao.filter(teacher.getSchool());
@@ -56,17 +58,21 @@ public class TestListStudentExecuteAction extends Action{
 	    request.setAttribute("class_num_set", list);
 		request.setAttribute("ent_year_set", entYearSet);
 
-    	if(s==null){
+
+
+
+    	if(student==null){
     		errors.put("f4", "学生番号が存在しません");
 			request.setAttribute("errors", errors);
 			request.getRequestDispatcher("TestList.action").forward(request, response);
+
     	}else{
-    		List<Test> name=testliststudent.filter(s);
-    		request.setAttribute("test", name);
-    		System.out.print(name);
-    		request.setAttribute("f4", studentno);
-        	request.setAttribute("name",sDao.get(studentno).getName());
-        	request.getRequestDispatcher("test_list_student.jsp").forward(request, response);
+    	List<TestListStudent> tListStu=TestStuDao.filter(student);
+    	request.setAttribute("test", tListStu);
+    	request.setAttribute("f4", studentno);
+    	request.setAttribute("name",student.getName());
+    	request.getRequestDispatcher("test_list_student.jsp").forward(request, response);
     	}
-	}
+    	}
+
 }
