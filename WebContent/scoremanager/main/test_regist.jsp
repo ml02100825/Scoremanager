@@ -84,6 +84,7 @@
 								<th>学生番号</th>
 								<th>氏名</th>
 								<th>点数</th>
+								<th>削除</th>
 							</tr>
 
 							<c:forEach var ="tests" items="${tests}">
@@ -103,46 +104,9 @@
 										</c:if>
 										</c:if>
 									</td>
-								</tr>
-							</c:forEach>
-						</table>
-
-						<input type="hidden" name="f1" value="${entYear}">
-						<input type="hidden" name="f2" value="${classnum}">
-						<input type="hidden" name="f3" value="${subject}">
-						<input type="hidden" name="f4" value="${num}">
- 						<input type="submit" value="登録して終了"
- 							style="background-color: #6a737b; color: white; border: none; border-radius: 10px;
-							padding: 8px 15px; margin-bottom: 20px;">
-					</form>
-				</c:when>
-
-				<c:when test="${tests.size() == 0}">
-					<div>科目：${sub.name} (${num}回)</div>
-					<form method="post" action="TestRegistExecute.action" >
-						<table class="table table-hover">
-							<tr>
-								<th>入学年度</th>
-								<th>クラス</th>
-								<th>学生番号</th>
-								<th>氏名</th>
-								<th>点数</th>
-							</tr>
-
-							<c:forEach var ="students" items="${students}">
-								<tr>
-									<td>${students.entyear}</td>
-									<td>${students.classNum}</td>
-									<td>${students.no}</td>
-									<td>${students.name}</td>
-									<td><input type="text" name="point_${students.no}">
-										<c:if test="${student.no eq StudentNo }">
-										<c:if test="${not empty pointerrors }">
-											<c:forEach var="pointerrors" items="${pointerrors}">
-												<div><span style="color:#ffd9a3;">${pointerrors}</span></div>
-											</c:forEach>
-										</c:if>
-										</c:if>
+									<td>
+										<input class="form-check-input" type="checkbox"
+											id="test-f5-check" name="f5" value="t">
 									</td>
 								</tr>
 							</c:forEach>
@@ -153,7 +117,7 @@
 						<input type="hidden" name="f3" value="${subject}">
 						<input type="hidden" name="f4" value="${num}">
  						<input type="submit" value="登録して終了"
-							style="background-color: #6a737b; color: white; border: none; border-radius: 10px;
+ 							style="background-color: #6a737b; color: white; border: none; border-radius: 10px;
 							padding: 8px 15px; margin-bottom: 20px;">
 					</form>
 				</c:when>
