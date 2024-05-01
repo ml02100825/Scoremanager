@@ -49,6 +49,7 @@ public class TestRegistAction extends Action{
 		List<Test> tests = null;
 		List<Student> students = null;
 		String flag = null;
+		boolean isAttend = true;
 		// リクエストパラメーターの取得
 		entYearStr = request.getParameter("f1");
 		classNum = request.getParameter("f2");
@@ -80,8 +81,25 @@ public class TestRegistAction extends Action{
 			request.setAttribute("num", numStr);
 			request.setAttribute("classnum", classNum);
 			tests = testDao.filter(teacher.getSchool(), entyear, classNum, sub , num );
+
 			if(tests == null || tests.size() == 0){
 			students = sDao.filter(teacher.getSchool(),entyear ,classNum, true);
+			int size = students.size();
+			for(int i = 0; i < size; i++){
+				 isAttend = students.get(i).getIsAttend();
+				if(isAttend == false){
+					students.remove(i);
+					size = size -1;
+				}}
+			}else{
+				int size = tests.size();
+				for(int i = 0; i < size; i++){
+					isAttend = tests.get(i).getStudent().getIsAttend();
+					if(isAttend == false){
+						tests.remove(i);
+						size = size -1;
+					}
+				}
 			}
 
 		}else if (flag != null  ){

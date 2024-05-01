@@ -49,11 +49,13 @@ public class TestDAO extends DAO{
 		// リザルトセット
 		ResultSet rSet = null;
 		// SQL文の条件
-		String condition = " and class_num = ? and subject_cd = ? and no = ?";
+		String condition = " and class_num = ? and subject_cd = ? and no = ? and student_no LIKE ?";
 		// SQL文のソート
 		String order = " order by student_no asc ";
 		// SQL文の在学フラグ条件
 		String conditionIsAttend = "";
+		String year = String.valueOf(entYear);
+		String year2 = year.substring(2,4);
 		try{
 			// プリペアードステートメントにSQｌ文をセット
 			statement = connection.prepareStatement(baseSql + condition + conditionIsAttend	 + order);
@@ -64,6 +66,7 @@ public class TestDAO extends DAO{
 			statement.setString(2, classNum);
 			statement.setString(3, subject.getCd());
 			statement.setInt(4, num);
+			statement.setString(5, year2+"%");
 			// プライベートステートメントを実行
 			rSet = statement.executeQuery();
 			// リストへの格納処理を実行

@@ -62,12 +62,20 @@ public class TestRegistExecuteAction extends Action{
 		if(numStr != null){
 			num = Integer.parseInt(numStr);
 		}
+		if(entYearStr != null){
+			entyear = Integer.parseInt(	entYearStr);
+		}
+		System.out.println("ENTYEAR = " + entyear);
 		tests = testDao.filter(teacher.getSchool(), entyear, classNum, sub , num );
 		int size = tests.size();
 		if(size != 0){
 		for(int i = 0; i < size; i++){
 			String pointStr = request.getParameter("point_" + tests.get(i).getStudent().getNo());
 			System.out.print(pointStr);
+			boolean isAttend = tests.get(i).getStudent().getIsAttend();
+			if(isAttend == false){
+				continue;
+			}
 			if(pointStr.equals("") == false){
 				p = Integer.parseInt(pointStr);
 				}else{
@@ -89,6 +97,10 @@ public class TestRegistExecuteAction extends Action{
 			students = sDao.filter(teacher.getSchool(),entyear ,classNum, true);
 			int stusize = students.size();
 			for(int i = 0; i < stusize; i++){
+				boolean isAttend = students.get(i).getIsAttend();
+				if(isAttend == false){
+					continue;
+				}
 				Test test = new Test();
 				String pointStr = request.getParameter("point_" + students.get(i).getNo());
 
@@ -124,15 +136,22 @@ public class TestRegistExecuteAction extends Action{
 				request.setAttribute("tests", tests);
 			}else{
 				students = sDao.filter(teacher.getSchool(),entyear ,classNum, true);
+				System.out.println("tests:" + tests);
+				request.setAttribute("tests", tests);
 				request.setAttribute("students", students);
 			}
+			// リクエストに入学年度をセット
+			request.setAttribute("f1", entyear);
+			// リクエストにクラス番号をセット
+			request.setAttribute("f2", classNum);
+			request.setAttribute("f3", subject);
+			request.setAttribute("f4", numStr);
 			request.setAttribute("entYear", entYearStr);
 			request.setAttribute("classnum", classNum);
 			request.setAttribute("subject", subject);
 			request.setAttribute("sub", sub);
 			request.setAttribute("num", numStr);
 			request.setAttribute("StudentNo", StudentNo);
-			request.setAttribute("students", students);
 			List<String> cNumList = cNumDao.filter(teacher.getSchool());
 			List<Subject> SubList = subDao.filter(teacher.getSchool());
 			List<Integer> entYearSet = new ArrayList<>();
