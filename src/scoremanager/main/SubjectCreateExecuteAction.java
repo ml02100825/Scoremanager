@@ -34,12 +34,16 @@ public class SubjectCreateExecuteAction extends Action {
         	List<String>errors1=new ArrayList<>();
 			errors1.add("科目コードが重複しています");
 			request.setAttribute("errors1",errors1);
+			request.setAttribute("name",subjectName);
+			request.setAttribute("cd",subjectCode);
             request.getRequestDispatcher("subject_create.jsp").forward(request, response);
         }// 科目コードが3文字であるかどうかをチェック
         else if (subjectCode == null || subjectCode.length() != 3) {
         	List<String> errors2 = new ArrayList<>();
             errors2.add("科目コードは3文字で入力してください");
             request.setAttribute("errors2",errors2);
+			request.setAttribute("name",subjectName);
+			request.setAttribute("cd",subjectCode);
             request.getRequestDispatcher("subject_create.jsp").forward(request, response);
         }else {
         	subDao.save(subject);

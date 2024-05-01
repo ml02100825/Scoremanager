@@ -6,7 +6,6 @@
  *
  */
 package scoremanager.main;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,16 +23,12 @@ import dao.StudentDAO;
 import dao.SubjectDAO;
 import dao.TestDAO;
 import tool.Action;
-
 public class TestRegistExecuteAction extends Action{
-
 	public void execute(
 			HttpServletRequest request, HttpServletResponse response
 			)throws Exception{
 		// セッションを取得
 		HttpSession session = request.getSession();
-
-
 		// セッションからログインしている教員情報を取得
 		Teacher teacher = (Teacher)session.getAttribute("user");
 		String entYearStr="";							// 入力された年度
@@ -57,18 +52,12 @@ public class TestRegistExecuteAction extends Action{
 		boolean error  = true;
 		boolean flag = false;
 		boolean TS = false;
-
-
-
 		// リクエストパラメーターの取得
 		entYearStr= request.getParameter("f1");
 		classNum = request.getParameter("f2");
 		subject = request.getParameter("f3");
 		numStr = request.getParameter("f4");
-
-
 		Subject sub = subDao.get(subject, teacher.getSchool());
-
 		System.out.println("numStr :" + numStr);
 		if(numStr != null){
 			num = Integer.parseInt(numStr);
@@ -101,13 +90,14 @@ public class TestRegistExecuteAction extends Action{
 			int stusize = students.size();
 			for(int i = 0; i < stusize; i++){
 				Test test = new Test();
-
 				String pointStr = request.getParameter("point_" + students.get(i).getNo());
+
 				if(pointStr.equals("") == false){
 				p = Integer.parseInt(pointStr);
 				}else{
 					p = 0;
 				}
+
 				if(p > 100 || p < 0){
 					error = false;
 					StudentNo = students.get(i).getNo();
@@ -120,12 +110,9 @@ public class TestRegistExecuteAction extends Action{
 				test.setStudent(students.get(i));
 				test.setSubject(sub);
 				tests.add(test);
-
-
 			}
-
 		}
-
+		System.out.print("error = " + error);
 		if(error == true){
 		flag = testDao.save(tests);
 		}
@@ -160,22 +147,11 @@ public class TestRegistExecuteAction extends Action{
 
 			request.getRequestDispatcher("test_regist.jsp").forward(request, response);
 		}
-
-
-
-
 		if(flag == true){
 		request.getRequestDispatcher("test_regist_done.jsp").forward(request, response);
 		}
 		else{
 			System.out.print("エラー");
 		}
-
-
-
-
-
-
 	}
-
 }
