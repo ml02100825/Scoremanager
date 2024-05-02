@@ -104,11 +104,10 @@
 										</c:if>
 										</c:if>
 									</td>
-<<<<<<< HEAD
 									<td>
 										<input class="form-check-input" type="checkbox"
 											id="test-f5-check" name="f5" value="t">
-=======
+
 								</tr>
 							</c:forEach>
 						</table>
@@ -150,7 +149,6 @@
 											</c:forEach>
 										</c:if>
 										</c:if>
->>>>>>> branch 'master' of https://github.com/ml02100825/Scoremanager.git
 									</td>
 								</tr>
 							</c:forEach>
