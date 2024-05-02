@@ -15,17 +15,15 @@
 
 			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">成績参照（科目）</h2>
 
-			<div
-				class="row border mx-3 mb-3 py-2 align-items-center justify-content-center rounded"
+			<div class="row border mx-3 mb-3 py-2 align-items-center justify-content-center rounded"
 				id="filter">
 
-				<form action="TestListSubjectExecute.action" method="get"
-					class="row align-items-center">
+				<form action="TestListSubjectExecute.action" method="get" class="row align-items-center">
 					<div class="col-2">科目情報</div>
 
 					<div class="col-2">
-						<label class="form-label" for="student-f1-select">入学年度 </label> <select
-							class="form-select" id="student-f1-select" name="f1">
+						<label class="form-label" for="student-f1-select">入学年度 </label>
+						<select class="form-select" id="student-f1-select" name="f1">
 							<option value="0">--------</option>
 							<c:forEach var="year" items="${ent_year_set}">
 								<option value="${year}" <c:if test="${year==f1}">selected</c:if>>${year}</option>

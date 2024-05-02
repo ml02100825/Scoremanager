@@ -84,6 +84,7 @@
 								<th>学生番号</th>
 								<th>氏名</th>
 								<th>点数</th>
+								<th>削除</th>
 							</tr>
 
 							<c:forEach var ="tests" items="${tests}">
@@ -103,6 +104,10 @@
 										</c:if>
 										</c:if>
 									</td>
+									<td>
+										<input class="form-check-input" type="checkbox"
+											id="test-f5-check" name="f5" value="t">
+
 								</tr>
 							</c:forEach>
 						</table>
@@ -154,7 +159,7 @@
 						<input type="hidden" name="f3" value="${subject}">
 						<input type="hidden" name="f4" value="${num}">
  						<input type="submit" value="登録して終了"
-							style="background-color: #6a737b; color: white; border: none; border-radius: 10px;
+ 							style="background-color: #6a737b; color: white; border: none; border-radius: 10px;
 							padding: 8px 15px; margin-bottom: 20px;">
 					</form>
 				</c:when>

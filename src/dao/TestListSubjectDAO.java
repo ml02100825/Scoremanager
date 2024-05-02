@@ -9,47 +9,32 @@ import java.util.List;
 
 import bean.School;
 import bean.Subject;
-import bean.TestListSubject;
+import bean.Test;
 
 
 public class TestListSubjectDAO extends DAO{
 	private String baseSql = " select * from test";
 	// フィルター後のリストへの格納処理をするメソッド
-	private List<TestListSubject> postFilter(ResultSet rSet, School school) throws Exception {
+	private List<Test> postFilter(ResultSet rSet, School school) throws Exception {
 		// リストの初期化
-		List<TestListSubject> list = new ArrayList<>();
-		String studentno = null;
+		List<Test> list = new ArrayList<>();
 		try{
 			StudentDAO stuDao = new StudentDAO();
 			SubjectDAO subDao = new SubjectDAO();
 			SchoolDAO schDao = new SchoolDAO();
-
 			// リザルトを全権走査
 			while(rSet.next()){
 				// 学生インスタンスを初期化
-			     // 学生番号が変わった場合に新しいインスタンスを作成
-		        if ( studentno == null ||  !studentno.equals(rSet.getString("student_no")) ) {
-		            TestListSubject t = new TestListSubject();
-		            t.setStudentNo(rSet.getString("student_no"));
-		            t.setStudentName(stuDao.get(rSet.getString("student_no")).getName());
-		            t.setEntYear(stuDao.get(rSet.getString("student_no")).getEntyear());
-		            t.setClassNum(rSet.getString("class_num"));
-
-		            int cnt = 1;
-		            t.putPoint(cnt, rSet.getInt("point"));
-		            list.add(t);
-		        }
-		        else{
-		        // リストに追加された最後のインスタンスを取得
-		        TestListSubject lastStudent = list.get(list.size() - 1);
-
-		        // ポイントを追加
-		        int cnt = lastStudent.getPoints().size() + 1;
-		        lastStudent.putPoint(cnt, rSet.getInt("point"));
-			}
-
-		        // 学生番号を更新
-		        studentno = rSet.getString("student_no");
+				Test t = new Test();
+				// 学生インスタンスを初期化
+				t.setStudent(stuDao.get(rSet.getString("student_no")));
+				t.setSubject(subDao.get(rSet.getString("subject_cd"),school));
+				t.setSchool(schDao.get(rSet.getString("school_cd")));
+				t.setPoint(rSet.getInt("point"));
+				t.setNo(rSet.getInt("no"));
+				t.setClassNum(rSet.getString("class_num"));
+				// リストに追加
+				list.add(t);
 			}}catch(SQLException | NullPointerException e){
 				e.printStackTrace();
 			}
@@ -58,9 +43,9 @@ public class TestListSubjectDAO extends DAO{
 		// listを返す
 		return list;
 	}
-	public List<TestListSubject> filter(Subject subject, int ent_year, School school, String class_num) throws Exception {
+	public List<Test> filter(Subject subject, int ent_year, School school, String class_num) throws Exception {
 		// リストを初期化
-		List<TestListSubject> list = new ArrayList<>();
+		List<Test> list = new ArrayList<>();
 		// コネクションを確率
 		Connection connection = getConnection();
 		// プリペアードステートメント
@@ -74,13 +59,12 @@ public class TestListSubjectDAO extends DAO{
 
 		String year = String.valueOf(ent_year);
 			String year2 = year.substring(2,4);
-
-
+			System.out.println("year2:" + year2);
 
 		try{
 			// プリペアードステートメントにSQｌ文をセット
 			statement = connection.prepareStatement(baseSql + condition + order);
-
+			System.out.println(statement);
 			// プリペアードステートメントに学校コードをバインド
 			statement.setString(1, school.getCd());
 
@@ -91,6 +75,7 @@ public class TestListSubjectDAO extends DAO{
 
 			statement.setString(4, class_num);
 
+			System.out.println(school.getCd() + subject.getCd() + year2+"%" + class_num);
 			// プライベートステートメントを実行
 			rSet = statement.executeQuery();
 
