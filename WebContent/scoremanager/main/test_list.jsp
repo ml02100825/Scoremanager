@@ -52,7 +52,6 @@
 								<option value="${subject.cd}"<c:if test="${subject.name==f3}">selected</c:if>>${subject.name}</option>
 							</c:forEach>
 						</select>
-						<div class="mt-2 text-warning">${errors.get("f3")}</div>
 					</div>
 
 					<div class="col-2">
@@ -61,7 +60,7 @@
 							検索
 						</button>
 					</div>
-					<div class="mt-2 text-warning">${errors.get("f1")}</div>
+					<div class="mt-2 text-warning">${errors.get("f3")}</div>
 				</form>
 
 				<div class="text-align">
