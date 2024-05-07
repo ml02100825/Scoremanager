@@ -118,10 +118,6 @@
 						</tr>
 					</c:forEach>
 				</table>
-
-				<c:if test="${tests.size() > 0}">
-					<div>科目名：${subjects.name}(${f4})</div>
-				</c:if>
 			</c:when>
 			<c:otherwise>
 				<div>成績情報が存在しませんでした</div>
