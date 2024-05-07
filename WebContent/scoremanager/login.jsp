@@ -17,6 +17,15 @@
                     passwordInput.type = "password";
                 }
             }
+            function checkInput(event) {
+                const input = event.target.value;
+                const regex = /[^\x00-\x7F]/; // ASCII文字以外の文字を含むかどうかをチェックする正規表現
+
+                if (regex.test(input)) {
+                    event.target.value = input.replace(/[^\x00-\x7F]/g, ''); // ASCII文字以外の文字を削除
+                    alert("日本語の入力は許可されていません。英字または数字を入力してください。");
+                }
+            }
         </script>
     </c:param>
 
@@ -32,9 +41,9 @@
                         </c:forEach>
                     </div>
 
-                    <input type="text" name="id" value="${not empty param.id ? param.id : ''}" placeholder="半角でご入力ください"
+                    <input type="text" name="id" id="noJapaneseInput"  oninput="checkInput(event)"  pattern="^[a-zA-Z0-9]+$"  value="${not empty param.id ? param.id : ''}" placeholder="半角でご入力ください"
                         maxlength="20" required style="width: 100%; height: 50px; margin-bottom: 10px;"><br>
-                    <input type="password" name="password" id="password" value="${not empty param.password ? param.password : ''}" placeholder="20文字以内の半角英数字でご入力ください"
+                    <input type="password" name="password" id="password" oninput="checkInput(event)"   pattern="^[a-zA-Z0-9]+$" value="${not empty param.password ? param.password : ''}" placeholder="20文字以内の半角英数字でご入力ください"
                         maxlength="20" required style="width: 100%; height: 50px; margin-bottom: 10px;"><br>
                     <input type="checkbox" id="chk_d_ps" onclick="togglePassword()">
                     <label for="chk_d_ps" style="margin-bottom: 10px;">パスワードを表示</label><br>
