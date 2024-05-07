@@ -9,7 +9,9 @@
         <form action="SubjectCreateExecute.action" method="post">
         	<div class="col-4" style="width: 100%; margin-bottom: 10px;">
             	<label>科目コード</label>
-                <input type="text" name="cd" value="${not empty cd ? cd : ''}" placeholder="科目コードを入力してください" maxlength="3" required style="width: 100%;">
+                <input type="text" name="cd" value="${not empty cd ? cd : ''}" placeholder="科目コードを入力してください" maxlength="3" required
+                	style="width: 100%; height: 40px; margin-bottom: 10px;
+					border: 1px solid #ccc; border-radius: 5px;">
             </div>
             <div style="text-align">
             	<c:if test="${not empty errors1}">
@@ -21,7 +23,9 @@
             </div>
             <div class="col-4" style="width: 100%; margin-bottom: 10px;">
             	<label>科目名</label>
-                <input type="text" name="name" value="${not empty name ? name : ''}" placeholder="科目名を入力してください" maxlength="20" required style="width: 100%;">
+                <input type="text" name="name" value="${not empty name ? name : ''}" placeholder="科目名を入力してください" maxlength="20" required
+                	style="width: 100%; height: 40px; margin-bottom: 10px;
+					border: 1px solid #ccc; border-radius: 5px;">
             </div>
             <div style="text-align">
             	<c:if test="${not empty errors2}">
@@ -32,7 +36,9 @@
                 </c:if>
             </div>
             <div class="col-4" style="width: 100%; margin-bottom: 10px;">
-                <input type="submit" name="end" value="登録" style="max-width: 130px; width: 100%; background-color: #5577ff; color: white; text-align: center;">
+                <input type="submit" name="end" value="登録"
+                	style="background-color: #0d6efd; color: white; border: none; border-radius: 10px;
+                    padding: 6px 15px; margin-bottom: 20px;">
             </div>
         </form>
         <div>
