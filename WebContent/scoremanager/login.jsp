@@ -37,7 +37,7 @@
 
                     <div class="mt-2 text-warning">
                         <c:forEach items="${errors}" var="error">
-                            <p style="color: black;">${error}</p>
+                            <ul style="color: black;">${error} </ul>
                         </c:forEach>
                     </div>
 
