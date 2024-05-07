@@ -8,26 +8,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bean.Student;
-import bean.Test;
+import bean.Subject;
+import bean.TestListStudent;
 
 public class TestListStudentDAO extends DAO{
 	private String baseSql="select * from test where student_no=?  ";
 
-	private List<Test> postFilter(ResultSet rSet) throws Exception {
-		List<Test> list=new ArrayList<>();
+	private List<TestListStudent> postFilter(ResultSet rSet) throws Exception {
+		List<TestListStudent> list=new ArrayList<>();
 		try{
 			StudentDAO stuDao = new StudentDAO();
 			SubjectDAO subDao = new SubjectDAO();
 			SchoolDAO schDao = new SchoolDAO();
 
 			while(rSet.next()){
-				Test t = new Test();
-				Student stu=stuDao.get(rSet.getString("student_no"));
-				t.setStudent(stuDao.get(rSet.getString("student_no")));
-				t.setClassNum(rSet.getString("class_num"));
-				t.setSubject(subDao.get(rSet.getString("subject_cd"),stu.getSchool()));
-				t.setSchool(schDao.get(rSet.getString("school_cd")));
-				t.setNo(rSet.getInt("no"));
+				TestListStudent t = new TestListStudent();
+				Subject sub = new Subject();
+				Student stu = new Student();
+				 stu=stuDao.get(rSet.getString("student_no"));
+				 sub = subDao.get(rSet.getString("subject_cd"),stu.getSchool());
+
+				t.setSubjectCd(sub.getCd());
+				t.setSubjectName(sub.getName());
+				t.setNum(rSet.getInt("no"));
 				t.setPoint(rSet.getInt("point"));
 				// リストに追加
 				list.add(t);
@@ -38,9 +41,9 @@ public class TestListStudentDAO extends DAO{
 		}
 		return list;
 	}
-	public List<Test> filter(Student student) throws Exception {
+	public List<TestListStudent> filter(Student student) throws Exception {
 		// リストを初期化
-		List<Test> list = new ArrayList<>();
+		List<TestListStudent> list = new ArrayList<>();
 		// コネクションを確率
 		Connection connection = getConnection();
 		// プリペアードステートメント

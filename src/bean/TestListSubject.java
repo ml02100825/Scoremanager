@@ -1,26 +1,21 @@
 package bean;
 
 import java.io.Serializable;
-import java.util.Map; // 正しいMapインターフェースのインポート
+import java.util.HashMap;
+import java.util.Map;
 
 public class TestListSubject implements Serializable {
 	private int entYear;
 	private String studentNo;
 	private String studentName;
 	private String classNum;
-	private Map<Integer, Integer> points; // 正しいMapの宣言
+
+	private Map<Integer, Integer> points;
 
 
-
-	// Getter and Setter for entYear
-	public int getEntYear() {
-		return entYear;
+	public TestListSubject(){
+		points =  new HashMap<>();
 	}
-	public void setEntYear(int entYear) {
-		this.entYear = entYear;
-	}
-
-	// Getter and Setter for studentNo
 	public String getStudentNo() {
 		return studentNo;
 	}
@@ -28,7 +23,8 @@ public class TestListSubject implements Serializable {
 		this.studentNo = studentNo;
 	}
 
-	// Getter and Setter for studentName
+
+
 	public String getStudentName() {
 		return studentName;
 	}
@@ -36,48 +32,6 @@ public class TestListSubject implements Serializable {
 		this.studentName = studentName;
 	}
 
-	// Getter and Setter for classNum
-	public String getClassNum() {
-		return classNum;
-	}
-	public void setClassNum(String classNum) {
-		this.classNum = classNum;
-	}
-
-	// Getter and Setter for points
-	public Map<Integer, Integer> getPoints() {
-		return points;
-	}
-	public void setPoints(Map<Integer, Integer> points) {
-		this.points = points;
-	}
-
-	// Getter and Setter for a point by key
-	public String getPoint(int key) { // 正しいメソッドシグネチャ
-		return point.get(key);
-	}
-	public void putPoint(int key, int value) { // 正しいメソッドシグネチャ
-		this.point = point;
-	}
-}
-
-
-
-
-
-/*package bean;
-
-import java.io.Serializable;
-
-import com.sun.javafx.collections.MappingChange.Map;
-
-public class TestListSubject implements Serializable {
-	private int entYear;
-	private String studentNo;
-	private String studentName;
-	private String classNum;
-	private Map<Integer,Integer> points;
-
 
 
 	public int getEntYear() {
@@ -88,47 +42,23 @@ public class TestListSubject implements Serializable {
 	}
 
 
-
-	public String getStudentNo() {
-		return studentNo;
-	}
-	public void setStudentNo(String studentNo) {
-		this.studentNo = studentNo;
-	}
-
-
-
-	public String getStudentName() {
-		return studentName;
-	}
-	public void setStudentName(String studentname) {
-		this.studentName = studentname;
-	}
-
-
 	public String getClassNum() {
-		return  classNum;
+		return classNum;
 	}
-	public void setClassNum(String classnum) {
-		this.classNum = classnum;
+	public void setClassNum(String classNum) {
+		this.classNum = classNum;
 	}
-
-
-
-	public Map<Integer,Integer> getPoints() {
+	public Map<Integer, Integer> getPoints(){
 		return points;
 	}
-	public void setPoints(Map<Integer,Integer> points) {
+	public void setPoints(Map<Integer, Integer> points){
 		this.points = points;
 	}
-
-
-
-	public String getPoint(key:int) {
+	public String getPoint(int key){
+		String point =  String.valueOf(points.get(key));
 		return point;
 	}
-	public void putPoint(key:int, value:int point) {
-		this.point = point;}
+	public void putPoint(int key, int value){
+		this.points.put(key, value);
 	}
-	*/
-
+}
