@@ -6,6 +6,7 @@
  *
  */
 package scoremanager.main;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,12 +24,16 @@ import dao.StudentDAO;
 import dao.SubjectDAO;
 import dao.TestDAO;
 import tool.Action;
+
 public class TestRegistExecuteAction extends Action{
+
 	public void execute(
 			HttpServletRequest request, HttpServletResponse response
 			)throws Exception{
 		// セッションを取得
 		HttpSession session = request.getSession();
+
+
 		// セッションからログインしている教員情報を取得
 		Teacher teacher = (Teacher)session.getAttribute("user");
 		String entYearStr="";							// 入力された年度
@@ -52,22 +57,36 @@ public class TestRegistExecuteAction extends Action{
 		boolean error  = true;
 		boolean flag = false;
 		boolean TS = false;
+
+
+
 		// リクエストパラメーターの取得
 		entYearStr= request.getParameter("f1");
 		classNum = request.getParameter("f2");
 		subject = request.getParameter("f3");
 		numStr = request.getParameter("f4");
+
+
 		Subject sub = subDao.get(subject, teacher.getSchool());
+
 		System.out.println("numStr :" + numStr);
 		if(numStr != null){
 			num = Integer.parseInt(numStr);
 		}
+		if(entYearStr != null){
+			entyear = Integer.parseInt(	entYearStr);
+		}
+		System.out.println("ENTYEAR = " + entyear);
 		tests = testDao.filter(teacher.getSchool(), entyear, classNum, sub , num );
 		int size = tests.size();
 		if(size != 0){
 		for(int i = 0; i < size; i++){
 			String pointStr = request.getParameter("point_" + tests.get(i).getStudent().getNo());
 			System.out.print(pointStr);
+			boolean isAttend = tests.get(i).getStudent().getIsAttend();
+			if(isAttend == false){
+				continue;
+			}
 			if(pointStr.equals("") == false){
 				p = Integer.parseInt(pointStr);
 				}else{
@@ -89,15 +108,18 @@ public class TestRegistExecuteAction extends Action{
 			students = sDao.filter(teacher.getSchool(),entyear ,classNum, true);
 			int stusize = students.size();
 			for(int i = 0; i < stusize; i++){
+				boolean isAttend = students.get(i).getIsAttend();
+				if(isAttend == false){
+					continue;
+				}
 				Test test = new Test();
-				String pointStr = request.getParameter("point_" + students.get(i).getNo());
 
+				String pointStr = request.getParameter("point_" + students.get(i).getNo());
 				if(pointStr.equals("") == false){
 				p = Integer.parseInt(pointStr);
 				}else{
 					p = 0;
 				}
-
 				if(p > 100 || p < 0){
 					error = false;
 					StudentNo = students.get(i).getNo();
@@ -110,9 +132,12 @@ public class TestRegistExecuteAction extends Action{
 				test.setStudent(students.get(i));
 				test.setSubject(sub);
 				tests.add(test);
+
+
 			}
+
 		}
-		System.out.print("error = " + error);
+
 		if(error == true){
 		flag = testDao.save(tests);
 		}
@@ -124,15 +149,22 @@ public class TestRegistExecuteAction extends Action{
 				request.setAttribute("tests", tests);
 			}else{
 				students = sDao.filter(teacher.getSchool(),entyear ,classNum, true);
+				System.out.println("tests:" + tests);
+				request.setAttribute("tests", tests);
 				request.setAttribute("students", students);
 			}
+			// リクエストに入学年度をセット
+			request.setAttribute("f1", entyear);
+			// リクエストにクラス番号をセット
+			request.setAttribute("f2", classNum);
+			request.setAttribute("f3", subject);
+			request.setAttribute("f4", numStr);
 			request.setAttribute("entYear", entYearStr);
 			request.setAttribute("classnum", classNum);
 			request.setAttribute("subject", subject);
 			request.setAttribute("sub", sub);
 			request.setAttribute("num", numStr);
 			request.setAttribute("StudentNo", StudentNo);
-			request.setAttribute("students", students);
 			List<String> cNumList = cNumDao.filter(teacher.getSchool());
 			List<Subject> SubList = subDao.filter(teacher.getSchool());
 			List<Integer> entYearSet = new ArrayList<>();
@@ -147,11 +179,22 @@ public class TestRegistExecuteAction extends Action{
 
 			request.getRequestDispatcher("test_regist.jsp").forward(request, response);
 		}
+
+
+
+
 		if(flag == true){
 		request.getRequestDispatcher("test_regist_done.jsp").forward(request, response);
 		}
 		else{
 			System.out.print("エラー");
 		}
+
+
+
+
+
+
 	}
+
 }
