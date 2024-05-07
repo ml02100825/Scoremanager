@@ -44,7 +44,7 @@
 						<div class="mt-2 text-warning">${errors.get("f2")}</div>
 					</div>
 
-					<div class="col-4">
+					<div class="col-4" style="margin-top: -10px;">
 						<label class="form-label" for="student-f3-select">科目</label>
 						<select class="form-select" id="student-f3-select" name="f3">
 							<option value="0">--------</option>
