@@ -44,8 +44,11 @@ public class TestListSubjectExecuteAction extends Action {
 
 		// リクエストパラメータから入力された科目情報を取得
 		int ent_year = Integer.parseInt(request.getParameter("f1"));
+		request.setAttribute("f1", ent_year);
 		String class_num = request.getParameter("f2");
+		request.setAttribute("f2", class_num);
 		String cd = request.getParameter("f3");
+		request.setAttribute("f3", cd);
 		System.out.print("科目：" + cd);
 
 		if (ent_year == 0 || class_num.equals("0") || cd.equals("0")) {
@@ -65,7 +68,7 @@ public class TestListSubjectExecuteAction extends Action {
 		}
 
 		Subject subject = subjectDao.get(cd, teacher.getSchool());
-
+		request.setAttribute("f3", subject.getName());
 		// テストリストを取得するためのDAOを作成
 		TestListSubjectDAO testListSubDAO = new TestListSubjectDAO();
 
