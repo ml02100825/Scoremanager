@@ -142,7 +142,7 @@
 									<td>${students.classNum}</td>
 									<td>${students.no}</td>
 									<td>${students.name}</td>
-									<td><input type="text" name="point_${students.no}">
+									<td><input type="number" name="point_${students.no}">
 										<c:if test="${students.no eq StudentNo }">
 										<c:if test="${not empty pointerrors }">
 											<c:forEach var="pointerrors" items="${pointerrors}">
