@@ -20,7 +20,7 @@
 			</p>
 
 			<a href="SubjectCreate.action">戻る</a>
-			<a href="SubjecttList.action">科目一覧</a>
+			<a href="SubjectList.action">科目一覧</a>
 
 		</section>
 	</c:param>
