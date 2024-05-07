@@ -41,22 +41,28 @@ public class TestRegistExecuteAction extends Action{
 		int entyear = 0 ;								// 入学年度
 		String subject = "";
 		String numStr = "";
+		String stuNo = "" ;
 		LocalDate todaysDate = LocalDate.now();		// LocalDateインスタンスを取得
 		int year = todaysDate.getYear();
 		int num = 0;// 現在の年を取得
 		String StudentNo = null;
+		Student stu = new Student();
 		StudentDAO sDao = new StudentDAO();			// 学生DAO
 		SubjectDAO subDao = new SubjectDAO();
 		ClassNumDAO cNumDao = new ClassNumDAO();// クラス番号DAOを初期化
 		TestDAO testDao = new TestDAO();
 		List<String> errors = new ArrayList<>();	// エラーメッセージ
+		List<String> delStu = new ArrayList<>();
 		List<Test> tests = null;
 		List<Student> students = null;
+		List<Student> delstudents = new ArrayList<>();
+		List<Test> deltests = new ArrayList<>();
 		int count = 0;
 		int p = 0;
 		boolean error  = true;
 		boolean flag = false;
 		boolean TS = false;
+		boolean deleteflag = false;
 
 
 
@@ -70,6 +76,7 @@ public class TestRegistExecuteAction extends Action{
 		Subject sub = subDao.get(subject, teacher.getSchool());
 
 		System.out.println("numStr :" + numStr);
+		try{
 		if(numStr != null){
 			num = Integer.parseInt(numStr);
 		}
@@ -80,33 +87,80 @@ public class TestRegistExecuteAction extends Action{
 		tests = testDao.filter(teacher.getSchool(), entyear, classNum, sub , num );
 		int size = tests.size();
 		if(size != 0){
-		for(int i = 0; i < size; i++){
-			String pointStr = request.getParameter("point_" + tests.get(i).getStudent().getNo());
-			System.out.print(pointStr);
-			boolean isAttend = tests.get(i).getStudent().getIsAttend();
-			if(isAttend == false){
-				continue;
+			for(int i = 0; i < size; i++){
+				stuNo = request.getParameter("del_" + tests.get(i).getStudent().getNo());
+				if (stuNo != null){
+					delStu.add(stuNo);
+				}
 			}
-			if(pointStr.equals("") == false){
-				p = Integer.parseInt(pointStr);
+			System.out.println("delStu：" +  delStu);
+			if(delStu.size() != 0){
+				for(int i = 0; i < delStu.size(); i++){
+					stu = sDao.get(delStu.get(i));
+					System.out.println("Student：" +  stu);
+
+					delstudents.add(stu);
+				}
+				for(int i = 0; i < delstudents.size(); i++){
+					deltests.add(testDao.get(delstudents.get(i), sub, teacher.getSchool(), num));
+				}
+				deleteflag = testDao.delete(deltests);
+			}
+
+
+			tests = testDao.filter(teacher.getSchool(), entyear, classNum, sub , num );
+			size = tests.size();
+			for(int i = 0; i < size; i++){
+
+				String pointStr = request.getParameter("point_" + tests.get(i).getStudent().getNo());
+				System.out.print(pointStr);
+				boolean isAttend = tests.get(i).getStudent().getIsAttend();
+				if(isAttend == false){
+					continue;
+				}
+				if(pointStr.equals("") == false){
+					p = Integer.parseInt(pointStr);
 				}else{
 					p = 0;
 				}
-			if(p > 100 || p < 0){
-				error = false;
-				TS = true;
-				StudentNo = tests.get(i).getStudent().getNo();
-				break;
+				if(p > 100 || p < 0){
+					error = false;
+					TS = true;
+					StudentNo = tests.get(i).getStudent().getNo();
+					break;
+				}
+				tests.get(i).setPoint(p);
+				count++;
 			}
-			tests.get(i).setPoint(p);
-			count++;
-		}
 		}else{
 			if(entYearStr != null ){
 				entyear = Integer.parseInt(entYearStr);
 			}
 			students = sDao.filter(teacher.getSchool(),entyear ,classNum, true);
 			int stusize = students.size();
+			for(int i = 0; i < stusize; i++){
+				stuNo = request.getParameter("del_" + students.get(i).getNo());
+				if (stuNo != null){
+					delStu.add(stuNo);
+				}
+			}
+			System.out.println("delStu：" +  delStu);
+			if(delStu.size() != 0){
+				for(int i = 0; i < delStu.size(); i++){
+					stu = sDao.get(delStu.get(i));
+					System.out.println("Student：" +  stu);
+
+					delstudents.add(stu);
+				}
+				for(int i = 0; i < delstudents.size(); i++){
+					deltests.add(testDao.get(delstudents.get(i), sub, teacher.getSchool(), num));
+				}
+				deleteflag = testDao.delete(deltests);
+			}
+
+
+			students = sDao.filter(teacher.getSchool(),entyear ,classNum, true);
+			stusize = students.size();
 			for(int i = 0; i < stusize; i++){
 				boolean isAttend = students.get(i).getIsAttend();
 				if(isAttend == false){
@@ -116,7 +170,7 @@ public class TestRegistExecuteAction extends Action{
 
 				String pointStr = request.getParameter("point_" + students.get(i).getNo());
 				if(pointStr.equals("") == false){
-				p = Integer.parseInt(pointStr);
+					p = Integer.parseInt(pointStr);
 				}else{
 					p = 0;
 				}
@@ -139,7 +193,7 @@ public class TestRegistExecuteAction extends Action{
 		}
 
 		if(error == true){
-		flag = testDao.save(tests);
+			flag = testDao.save(tests);
 		}
 		else{
 			errors.add("0～100の範囲で入力してください");
@@ -183,15 +237,17 @@ public class TestRegistExecuteAction extends Action{
 
 
 
-		if(flag == true){
-		request.getRequestDispatcher("test_regist_done.jsp").forward(request, response);
+		if(flag == true || deleteflag == true){
+			request.getRequestDispatcher("test_regist_done.jsp").forward(request, response);
 		}
 		else{
 			System.out.print("エラー");
 		}
 
 
-
+		}catch(NullPointerException e){
+			request.getRequestDispatcher("test_regist_done.jsp").forward(request, response);
+		}
 
 
 
