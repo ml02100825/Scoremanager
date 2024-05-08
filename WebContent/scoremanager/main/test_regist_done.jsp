@@ -21,8 +21,11 @@
 				</label>
 			</p>
 
-			<a href="TestRegist.action">戻る</a>
-			<a href="TestList.action">成績参照</a>
+			<div style="margin-top: 130px;">
+				<a href="TestRegist.action">戻る</a>
+				<span style="margin: 40px;"></span>
+				<a href="TestList.action">成績参照</a>
+			</div>
 
 		</section>
 	</c:param>

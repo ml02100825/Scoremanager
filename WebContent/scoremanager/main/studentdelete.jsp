@@ -30,7 +30,9 @@
 					</ul>
 				</div>
 
-				<a href="StudentList.action">戻る</a>
+				<div style="margin-top: 130px;">
+					<a href="StudentList.action">戻る</a>
+				</div>
 
 			</form>
 
