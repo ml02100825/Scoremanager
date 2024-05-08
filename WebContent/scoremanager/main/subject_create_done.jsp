@@ -19,9 +19,9 @@
                 </label>
             </p>
 
-            <div style="text-align: left; margin-top: 20px;">
-                <br><br>
-                <a href="SubjectCreate.action" style="margin-right: 30px;">戻る</a>　　　　
+            <div style="margin-top: 130px;">
+                <a href="SubjectCreate.action">戻る</a>
+                <span style="margin: 40px;"></span>
                 <a href="SubjectList.action">科目一覧</a>
             </div>
 

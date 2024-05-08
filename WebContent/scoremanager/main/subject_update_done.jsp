@@ -18,8 +18,7 @@
                 </label>
             </p>
 
-            <div style="text-align: left; margin-top: 20px;">
-                <br><br>
+            <div style="margin-top: 130px;">
                 <a href="SubjectList.action">科目一覧</a>
             </div>
 
