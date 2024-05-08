@@ -21,7 +21,9 @@
 					<input type="text"  name = "f1"  value="${subject.getCd()}"
 						readonly style="width: 100%; height: 40px; margin-bottom: 10px; border: none;">
 				</div>
-
+				<div>
+					<span style="color:#ffd9a3;">${errors}</span>
+					</div>
 				<div class="text-align:">
 					<label class="form-label" for="student-f2-select">科目名</label><br>
 					<input type="text"  name = "f2"  value="${subject.getName()}"
