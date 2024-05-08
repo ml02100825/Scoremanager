@@ -11,7 +11,7 @@
 
     <c:param name="content">
         <section class="me-4">
-            <p class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4">
+            <p>
             	エラーが発生しました
             </p>
             <p style="text-align: center;">
