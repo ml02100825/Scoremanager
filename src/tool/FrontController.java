@@ -27,7 +27,8 @@ public class FrontController extends HttpServlet	{
 
 
 			}catch (Exception e){
-				e.printStackTrace(out);
+				e.printStackTrace();
+				request.getRequestDispatcher("/error.jsp").forward(request, response);
 		}
 
 	}
