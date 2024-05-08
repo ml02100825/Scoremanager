@@ -97,7 +97,7 @@ public class TestRegistAction extends Action{
 			request.setAttribute("classnum", classNum);
 			tests = testDao.filter(teacher.getSchool(), entyear, classNum, sub , num );
 
-			if(tests == null || tests.size() == 0){
+;			if(tests == null || tests.size() == 0){
 			students = sDao.filter(teacher.getSchool(),entyear ,classNum, true);
 			int size = students.size();
 			for(int i = 0; i < size; i++){
