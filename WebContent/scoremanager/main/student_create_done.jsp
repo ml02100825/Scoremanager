@@ -19,8 +19,11 @@
 				</label>
 			</p>
 
-			<a href="StudentCreate.action">戻る</a>
-			<a href="StudentList.action">学生一覧</a>
+			<div style="margin-top: 130px;">
+				<a href="StudentCreate.action">戻る</a>
+				<span style="margin: 40px;"></span>
+				<a href="StudentList.action">学生一覧</a>
+			</div>
 
 		</section>
 	</c:param>

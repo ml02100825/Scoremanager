@@ -19,7 +19,9 @@
 				</label>
 			</p>
 
-			<a href="StudentList.action">学生一覧</a>
+			<div style="margin-top: 130px;">
+				<a href="StudentList.action">学生一覧</a>
+			</div>
 
 		</section>
 	</c:param>

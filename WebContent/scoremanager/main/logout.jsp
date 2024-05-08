@@ -20,7 +20,9 @@
 			</label>
 		</p>
 
-		<a href="../Login.action">ログイン</a>
+		<div style="margin-top: 80px;">
+			<a href="../Login.action">ログイン</a>
+		</div>
 
 	</c:param>
 
