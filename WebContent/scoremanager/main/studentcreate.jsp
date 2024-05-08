@@ -30,7 +30,7 @@
                 <div class="text-align:">
                     <label class="form-label" for="student-f2-select">学生番号</label>
                     <input type="text"  name="f2" value="${not empty param.f2 ? param.f2 : ''}" placeholder="学生番号を入力してください"
-                        maxlength="30" required style="width: 100%; height: 40px; margin-bottom: 10px;
+                        maxlength="10" required style="width: 100%; height: 40px; margin-bottom: 10px;
                         border: 1px solid #ccc; border-radius: 5px;">
                     <div class="mt-2 text-warning">${errors.f2}</div>
                 </div>
