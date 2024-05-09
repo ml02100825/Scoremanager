@@ -15,6 +15,8 @@ public class Teacher extends User implements Serializable  {
 	private String password;
 	private String name;
 	private School school;
+	private boolean admin;
+	private boolean active;
 
 
 
@@ -35,8 +37,12 @@ public class Teacher extends User implements Serializable  {
 	public School getSchool(){
 		return school;
 	}
-
-
+	public boolean getAdmin(){
+		return admin;
+	}
+	public boolean getActive(){
+		return active;
+	}
 	public void setId(String id){
 		this.id= id;
 	}
@@ -52,4 +58,11 @@ public class Teacher extends User implements Serializable  {
 		this.school = school;
 	}
 
+	public void setAdmin(boolean admin){
+		this.admin = admin;
+	}
+
+	public void setActive(boolean active){
+		this.active = active;
+	}
 }
