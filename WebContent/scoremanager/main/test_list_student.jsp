@@ -14,7 +14,7 @@
 	<c:param name="content">
 		<section class="text-align">
 
-			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">成績参照（学生）</h2>
+			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">成績一覧（学生）</h2>
 
 			<div class="row border mx-3 mb-3 py-2 align-items-center justify-content-center rounded"
 				id="filter">
