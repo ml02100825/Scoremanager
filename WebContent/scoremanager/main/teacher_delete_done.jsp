@@ -20,7 +20,7 @@
 			</c:if>
 		<c:if test="${flag == false}">
 				<p style="text-align: center;">
-				<label style="width: 100%; background-color: #8cc3a9;">
+				<label style="width: 100%; background-color: #ff0000;">
 					管理者権限をもつ教員を削除することはできません </label>
 			</p>
 		</c:if>

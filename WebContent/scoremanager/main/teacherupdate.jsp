@@ -33,7 +33,7 @@
 				<div class="text-align:">
 					<div class="text-align:">
 						<label class="form-label" for="teacher-f3-select">管理者権限</label> <input
-							type="checkbox" name="f3" value="t">
+							type="checkbox" name="f3" value="t" <c:if test="${teacher.getAdmin() == true}">checked</c:if> />
 					</div>
 
 
