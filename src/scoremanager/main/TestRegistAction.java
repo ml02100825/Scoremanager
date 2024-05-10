@@ -61,16 +61,8 @@ public class TestRegistAction extends Action{
 		subject = request.getParameter("f3");
 		numStr = request.getParameter("f4");
 		flag = request.getParameter("button");
-		System.out.println("1：" + entYearStr);
-		System.out.println("2：" + classNum);
-		System.out.println("3：" + subject);
-		System.out.println("4：" + numStr);
-		System.out.println(subject);
+
 		Subject sub = subDao.get(subject, teacher.getSchool());
-
-
-
-
 
 		// DBからデータ取得
 
@@ -159,14 +151,9 @@ public class TestRegistAction extends Action{
 
 		request.setAttribute("ent_year_set", entYearSet);
 
-		System.out.println(tests);
+
 		// JSPにフォワード
 		request.getRequestDispatcher("test_regist.jsp").forward(request, response);
-
-
-
-
-
 
 
 	}
