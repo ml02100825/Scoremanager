@@ -33,21 +33,12 @@ public class StudentDeleteAction extends Action{
 
 		Student student = sDao.get(no);
 
-
-
-
-
-
 		// セッションからログインしている教員情報を取得
 		Teacher teacher = (Teacher)session.getAttribute("user");
 		List<String> list = cNumDao.filter(teacher.getSchool());
 		request.setAttribute("class_num_set", list);
 
 		request.setAttribute("student", student);
-
-
-
-
 
 		// JSPにフォワード
 		request.getRequestDispatcher("studentdelete.jsp").forward(request, response);

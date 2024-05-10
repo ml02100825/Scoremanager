@@ -20,6 +20,7 @@ public class SubjectDeleteexecuteAction extends Action {
 
         // 科目コードをリクエストから取得
         String cd = request.getParameter("cd");
+        boolean deleteSuccess = false;
 
         // SubjectDAOのインスタンスを作成
         SubjectDAO sDao = new SubjectDAO();
@@ -27,22 +28,20 @@ public class SubjectDeleteexecuteAction extends Action {
         // 科目オブジェクトを取得
         Subject subject = sDao.get(cd, teacher.getSchool());
 
-        // 科目が存在しない場合はエラーページにリダイレクト
-        if (subject == null) {
-            response.sendRedirect("error.jsp");
-            return;
+        // 科目が存在する場合はエラーページにリダイレクト
+        if (subject != null) {
+            // 科目を削除
+            deleteSuccess = sDao.delete(subject);
         }
 
-        // 科目を削除
-        boolean deleteSuccess = sDao.delete(subject);
+
 
         // 削除が成功したかどうかを確認し、エラーページにリダイレクト
-        if (!deleteSuccess) {
-            response.sendRedirect("error.jsp");
-            return;
+        if (deleteSuccess == true) {
+        	// 削除が成功した場合は成功ページにフォワード
+            request.getRequestDispatcher("subject_delete_done.jsp").forward(request, response);
         }
 
-        // 削除が成功した場合は成功ページにフォワード
-        request.getRequestDispatcher("subject_delete_done.jsp").forward(request, response);
+
     }
 }

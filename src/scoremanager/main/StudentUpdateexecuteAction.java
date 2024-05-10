@@ -50,11 +50,11 @@ public class StudentUpdateexecuteAction extends Action{
 		Map<String, String> errors = new HashMap<>();	// エラーメッセージ
 
 		// リクエストパラメーターの取得
-		entYearStr = request.getParameter("f1");
-		studentno = request.getParameter("f2");
-		name = request.getParameter("f3");
-		classNum = request.getParameter("f4");
-		isAttendStr = request.getParameter("f5");
+		entYearStr = request.getParameter("ent_year");
+		studentno = request.getParameter("no");
+		name = request.getParameter("name");
+		classNum = request.getParameter("class_num");
+		isAttendStr = request.getParameter("si_attend");
 
 		// もし名前が入力されてなかったら
 		if (name == null || name.isEmpty()) {
@@ -89,17 +89,10 @@ public class StudentUpdateexecuteAction extends Action{
 		student.setClassNum(classNum);
 		student.setAttend(isAttend);
 		student.setSchool(teacher.getSchool());
-
-
-
-
-
 		// 名前とクラス番号が入力されてたら
 		if (name !=null && !classNum.equals("0")){
 
 			update  = sDao.save(student);
-
-
 
 		}else{
 			errors.put("f1", "このフィールドを入力してください");
@@ -111,24 +104,8 @@ public class StudentUpdateexecuteAction extends Action{
 			// 全学生情報を取得
 
 		}
-
-
-		// レスポンス値をセット
-		// リクエストに入学年度をセット
-		request.setAttribute("f1", entyear);
-		// リクエストにクラス番号をセット
-		request.setAttribute("f2", classNum);
-
-
 		request.getRequestDispatcher("student_update_done.jsp").forward(request, response);
 		}
-
-
-
-
-
-
-
 	}
 
 }

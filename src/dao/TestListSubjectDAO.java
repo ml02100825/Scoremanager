@@ -27,29 +27,29 @@ public class TestListSubjectDAO extends DAO{
 			// リザルトを全権走査
 			while(rSet.next()){
 				// 学生インスタンスを初期化
-			     // 学生番号が変わった場合に新しいインスタンスを作成
-		        if ( studentno == null ||  !studentno.equals(rSet.getString("student_no")) ) {
-		            TestListSubject t = new TestListSubject();
-		            t.setStudentNo(rSet.getString("student_no"));
-		            t.setStudentName(stuDao.get(rSet.getString("student_no")).getName());
-		            t.setEntYear(stuDao.get(rSet.getString("student_no")).getEntyear());
-		            t.setClassNum(rSet.getString("class_num"));
+				// 学生番号が変わった場合に新しいインスタンスを作成
+				if ( studentno == null ||  !studentno.equals(rSet.getString("student_no")) ) {
+					TestListSubject t = new TestListSubject();
+					t.setStudentNo(rSet.getString("student_no"));
+					t.setStudentName(stuDao.get(rSet.getString("student_no")).getName());
+					t.setEntYear(stuDao.get(rSet.getString("student_no")).getEntyear());
+					t.setClassNum(rSet.getString("class_num"));
 
-		            int cnt = 1;
-		            t.putPoint(cnt, rSet.getInt("point"));
-		            list.add(t);
-		        }
-		        else{
-		        // リストに追加された最後のインスタンスを取得
-		        TestListSubject lastStudent = list.get(list.size() - 1);
+					int cnt = 1;
+					t.putPoint(cnt, rSet.getInt("point"));
+					list.add(t);
+				}
+				else{
+					// リストに追加された最後のインスタンスを取得
+					TestListSubject lastStudent = list.get(list.size() - 1);
 
-		        // ポイントを追加
-		        int cnt = lastStudent.getPoints().size() + 1;
-		        lastStudent.putPoint(cnt, rSet.getInt("point"));
-			}
+					// ポイントを追加
+					int cnt = lastStudent.getPoints().size() + 1;
+					lastStudent.putPoint(cnt, rSet.getInt("point"));
+				}
 
-		        // 学生番号を更新
-		        studentno = rSet.getString("student_no");
+				// 学生番号を更新
+				studentno = rSet.getString("student_no");
 			}}catch(SQLException | NullPointerException e){
 				e.printStackTrace();
 			}
@@ -73,7 +73,7 @@ public class TestListSubjectDAO extends DAO{
 		String order = " order by student_no asc ";
 
 		String year = String.valueOf(ent_year);
-			String year2 = year.substring(2,4);
+		String year2 = year.substring(2,4);
 
 
 

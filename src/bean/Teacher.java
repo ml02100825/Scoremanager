@@ -19,10 +19,6 @@ public class Teacher extends User implements Serializable  {
 	private boolean active;
 
 
-
-
-
-
 	public String getId(){
 		return  id;
 	}

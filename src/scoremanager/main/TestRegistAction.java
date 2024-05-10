@@ -159,7 +159,7 @@ public class TestRegistAction extends Action{
 
 		request.setAttribute("ent_year_set", entYearSet);
 
-
+		System.out.println(tests);
 		// JSPにフォワード
 		request.getRequestDispatcher("test_regist.jsp").forward(request, response);
 

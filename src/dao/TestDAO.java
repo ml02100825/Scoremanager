@@ -51,7 +51,7 @@ public class TestDAO extends DAO{
 		// リザルトセット
 		ResultSet rSet = null;
 		// SQL文の条件
-		String condition = " and class_num = ? and subject_cd = ? and no = ? and student_no = ?";
+		String condition = " and class_num = ? and subject_cd = ? and no = ? and student_no LIKE ?";
 		// SQL文のソート
 		String order = " order by student_no asc ";
 		// SQL文の在学フラグ条件
@@ -69,6 +69,7 @@ public class TestDAO extends DAO{
 			statement.setString(5, year2+"%");
 			// プライベートステートメントを実行
 			rSet = statement.executeQuery();
+			System.out.println(rSet);
 			// リストへの格納処理を実行
 			list = postFilter(rSet, school);
 		}catch(Exception e){
@@ -141,7 +142,7 @@ public class TestDAO extends DAO{
 				}
 			}
 		}
-			return test;
+		return test;
 	}
 
 	private boolean save(Test test, Connection connection)throws Exception{
@@ -239,7 +240,7 @@ public class TestDAO extends DAO{
 
 
 		if(count > 0){
-		return true;
+			return true;
 		}else{
 			return false;
 		}
@@ -273,71 +274,71 @@ public class TestDAO extends DAO{
 		}
 		// listを返す
 		if(count > 0){
-		return true;
+			return true;
 		}else{
 			return false;
 		}
 	}
 
 
-public boolean delete(List<Test> list) throws Exception {
-	// リストを初期化
-			int count = 0;
-			// コネクションを確率
-			Connection connection = getConnection();
+	public boolean delete(List<Test> list) throws Exception {
+		// リストを初期化
+		int count = 0;
+		// コネクションを確率
+		Connection connection = getConnection();
 
-			// プリペアードステートメント
-			PreparedStatement statement  = null;
-			// リザルトセット
-			ResultSet rSet = null;
-			// SQL文の条件
-			String condition = "and ent_year = ?  and class_num = ? and subject_cd = ? and no = ?";
-			// SQL文のソート
-			String order = " order by no asc ";
+		// プリペアードステートメント
+		PreparedStatement statement  = null;
+		// リザルトセット
+		ResultSet rSet = null;
+		// SQL文の条件
+		String condition = "and ent_year = ?  and class_num = ? and subject_cd = ? and no = ?";
+		// SQL文のソート
+		String order = " order by no asc ";
 
-			// SQL文の在学フラグ条件
-			String conditionIsAttend = "";
-			boolean t = false;
+		// SQL文の在学フラグ条件
+		String conditionIsAttend = "";
+		boolean t = false;
 
-			try{
-				int size = list.size();
-				for(int i = 0; i < size; i++){
-					t = delete(list.get(i), connection);
-					if (t = true){
-						count++;
-					}
-				}
-
-
-
-				// リストへの格納処理を実行
-
-			}catch(Exception e){
-				throw e;
-			} finally{
-				if(statement != null){
-					try{
-						statement.close();
-
-					} catch(SQLException sqle){
-						throw sqle;
-					}
-				}
-				if (connection != null){
-					try{
-						connection.close();
-					}catch (SQLException sqle){
-						throw sqle;
-					}
+		try{
+			int size = list.size();
+			for(int i = 0; i < size; i++){
+				t = delete(list.get(i), connection);
+				if (t = true){
+					count++;
 				}
 			}
-			// listを返す
-			if(count > 0){
-			return true;
-			}else{
-				return false;
+
+
+
+			// リストへの格納処理を実行
+
+		}catch(Exception e){
+			throw e;
+		} finally{
+			if(statement != null){
+				try{
+					statement.close();
+
+				} catch(SQLException sqle){
+					throw sqle;
+				}
+			}
+			if (connection != null){
+				try{
+					connection.close();
+				}catch (SQLException sqle){
+					throw sqle;
+				}
 			}
 		}
+		// listを返す
+		if(count > 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
 
 
 

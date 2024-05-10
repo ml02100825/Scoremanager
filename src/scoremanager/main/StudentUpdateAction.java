@@ -30,13 +30,7 @@ public class StudentUpdateAction extends Action{
 		String no = request.getParameter("no");
 		StudentDAO sDao = new StudentDAO();
 
-
 		Student student = sDao.get(no);
-
-
-
-
-
 
 		// セッションからログインしている教員情報を取得
 		Teacher teacher = (Teacher)session.getAttribute("user");
@@ -45,19 +39,8 @@ public class StudentUpdateAction extends Action{
 
 		request.setAttribute("student", student);
 
-
-
-
-
 		// JSPにフォワード
 		request.getRequestDispatcher("studentupdate.jsp").forward(request, response);
-
-
-
-
-
-
-
 	}
 
 }

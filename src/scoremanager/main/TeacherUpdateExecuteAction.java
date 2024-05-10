@@ -13,8 +13,8 @@ import tool.Action;
 
 public class TeacherUpdateExecuteAction extends Action {
 	public void execute(
-		HttpServletRequest request, HttpServletResponse response
-	)throws Exception{
+			HttpServletRequest request, HttpServletResponse response
+			)throws Exception{
 		HttpSession session = request.getSession();
 
 		String id="";							// 入力された科目コード
@@ -29,19 +29,18 @@ public class TeacherUpdateExecuteAction extends Action {
 		// リクエストパラメーターの取得
 		id = request.getParameter("f1");
 		name = request.getParameter("f2");
-	    String ad = request.getParameter("f3");
-        Boolean admin = false;
-        if(ad == null || ad.equals("")  ){
-        	admin = false;
-        }else{
-        	admin = true;
-        }
+		String ad = request.getParameter("f3");
+		Boolean admin = false;
+		if(ad == null || ad.equals("")  ){
+			admin = false;
+		}else{
+			admin = true;
+		}
 
-
-        tea.setId(id);
-        tea.setName(name);
-        tea.setSchool(teacher.getSchool());
-        tea.setAdmin(admin);
+		tea.setId(id);
+		tea.setName(name);
+		tea.setSchool(teacher.getSchool());
+		tea.setAdmin(admin);
 		existtea = tDao.get(id);
 
 		if(existtea == null){

@@ -22,13 +22,6 @@ import dao.SubjectDAO;
 
 public class Util implements Serializable  {
 
-
-
-
-
-
-
-
 	public Teacher getUser(HttpServletRequest request){
 		HttpSession session = request.getSession();//セッション
 		Teacher teacher=(Teacher)session.getAttribute("user");

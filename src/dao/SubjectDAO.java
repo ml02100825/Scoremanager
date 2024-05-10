@@ -16,7 +16,7 @@ public class SubjectDAO extends DAO{
 	// フィルター後のリストへの格納処理をするメソッド
 
 	public List<Subject> filter(School school) throws Exception {
-		 String baseSql = " select * from subject where school_cd=? ";
+		String baseSql = " select * from subject where school_cd=? ";
 
 		// リストを初期化
 		List<Subject> list = new ArrayList<>();
@@ -125,7 +125,7 @@ public class SubjectDAO extends DAO{
 				}
 			}
 		}
-			return subject;
+		return subject;
 
 
 	}

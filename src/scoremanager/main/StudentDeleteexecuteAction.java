@@ -51,44 +51,16 @@ public class StudentDeleteexecuteAction extends Action{
 		studentno = request.getParameter("f1");
 		System.out.print(studentno);
 		Student s =  sDao.get(studentno);
-		System.out.println(s);
-		// もし名前が入力されてなかったら
-
-
-
-
-		// DBからデータ取得
-
-		// ログインユーザーの学校コードをもとにクラス番号一覧を表示(その学校に存在するクラスのみ表示させたいから)
-
-
-
-
-
-
-
 
 		// 名前とクラス番号が入力されてたら
 		if (s != null){
 
 			update  = sDao.delete(s);
-
-
-
 		}
-
-
 
 		if(update == true){
 		request.getRequestDispatcher("student_update_done.jsp").forward(request, response);
 		}
-
-
-
-
-
-
-
 	}
 
 }

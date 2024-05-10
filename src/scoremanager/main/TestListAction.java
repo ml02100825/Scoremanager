@@ -31,15 +31,12 @@ public class TestListAction extends Action{
 		}
 		Teacher teacher = (Teacher)session.getAttribute("user");
 		List<String> list = cNumDao.filter(teacher.getSchool());
-	    // 科目名のリストを取得
-	    List<Subject> subjects = subjectDao.filter(teacher.getSchool());
-	    request.setAttribute("subject_set", subjects);
+		// 科目名のリストを取得
+		List<Subject> subjects = subjectDao.filter(teacher.getSchool());
+		request.setAttribute("subject_set", subjects);
 		request.setAttribute("class_num_set", list);
 		request.setAttribute("ent_year_set", entYearSet);
 
-		System.out.print(subjects);
-		System.out.print(list);
-		System.out.print(entYearSet);
 		request.getRequestDispatcher("test_list.jsp").forward(request, response);
 	}
 

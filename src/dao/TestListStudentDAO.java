@@ -25,8 +25,8 @@ public class TestListStudentDAO extends DAO{
 				TestListStudent t = new TestListStudent();
 				Subject sub = new Subject();
 				Student stu = new Student();
-				 stu=stuDao.get(rSet.getString("student_no"));
-				 sub = subDao.get(rSet.getString("subject_cd"),stu.getSchool());
+				stu=stuDao.get(rSet.getString("student_no"));
+				sub = subDao.get(rSet.getString("subject_cd"),stu.getSchool());
 
 				t.setSubjectCd(sub.getCd());
 				t.setSubjectName(sub.getName());

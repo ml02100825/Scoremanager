@@ -4,7 +4,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:import url="/common/base.jsp">
-	<c:param name = "title">
+	<c:param name="title">
 		得点管理システム
 	</c:param>
 
@@ -13,10 +13,9 @@
 
 			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">学生情報変更</h2>
 
-			<p  style="text-align: center;">
+			<p style="text-align: center;">
 				<label style="width: 100%; background-color: #8cc3a9;">
-					変更が完了しました
-				</label>
+					変更が完了しました </label>
 			</p>
 
 			<div style="margin-top: 130px;">

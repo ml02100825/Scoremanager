@@ -45,9 +45,9 @@
                         maxlength="20" required style="width: 100%; height: 50px; margin-bottom: 10px;"><br>
                     <input type="password" name="password" id="password" oninput="checkInput(event)"   pattern="^[a-zA-Z0-9]+$" value="${not empty param.password ? param.password : ''}" placeholder="20文字以内の半角英数字でご入力ください"
                         maxlength="20" required style="width: 100%; height: 50px; margin-bottom: 10px;"><br>
-                    <input type="checkbox" id="chk_d_ps" onclick="togglePassword()">
+                    <input type="checkbox" name ="chk_d_ps" id="chk_d_ps" onclick="togglePassword()">
                     <label for="chk_d_ps" style="margin-bottom: 10px;">パスワードを表示</label><br>
-                    <input type="submit" value="ログイン"
+                    <input type="submit" name = "login" value="ログイン"
                         style="background-color: #0d6efd; color: white; border: none; border-radius: 10px;
                         padding: 8px 50px; margin-bottom: 20px;">
                 </div>

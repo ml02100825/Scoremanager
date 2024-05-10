@@ -34,7 +34,6 @@ public class SubjectListAction extends Action{
 
 		// 科目リストを取得
 		List<Subject> subject_list = subjectdao.filter(teacher.getSchool());
-		System.out.println(subject_list);
 		// リクエストに科目リストをセット
 		request.setAttribute("subject_list", subject_list);
 

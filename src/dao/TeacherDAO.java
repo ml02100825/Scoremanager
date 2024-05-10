@@ -131,7 +131,7 @@ public class TeacherDAO extends DAO {
 		// リザルトセット
 		ResultSet rSet = null;
 		// SQL文の条件
-		String sql = " select * from teacher where school_cd = ? and admin = false  and active = true";
+		String sql = " select * from teacher where school_cd = ?  and active = true";
 		// SQL文のソート
 		// SQL文の在学フラグ条件
 		String conditionIsAttend = "";
@@ -234,7 +234,7 @@ public class TeacherDAO extends DAO {
 
 		try {
 			// プリペアードステートメントにDELETE文をセット
-			statement = connection.prepareStatement("update teacher set active = false where id = ?");
+			statement = connection.prepareStatement("update teacher set active = false where id = ? and admin = false");
 			// プリペアードステートメントに学生番号をバインド
 			statement.setString(1, teacher.getId());
 			// プリペアードステートメントを実行

@@ -14,13 +14,11 @@ public class TeacherCreateAction extends Action{
 		HttpSession session = request.getSession();//セッション
 		Teacher teacher=(Teacher)session.getAttribute("user");
 
-
 		String id="";
 		String name="";
 
 		request.setAttribute("id", id);
 		request.setAttribute("name", name);
-
 
 		request.getRequestDispatcher("teacher_create.jsp").forward(request, response);
 	}

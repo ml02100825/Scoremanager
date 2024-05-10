@@ -4,7 +4,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:import url="/common/base.jsp">
 
-	<c:param name = "title">
+	<c:param name="title">
 		得点管理システム
 	</c:param>
 
@@ -20,10 +20,11 @@
 			</div>
 
 			<form method="get">
-				<div class="row border mx-3 mb-3 py-2 align-items-center rounded" id="filter">
+				<div class="row border mx-3 mb-3 py-2 align-items-center rounded"
+					id="filter">
 					<div class="col-4">
-						<label class="form-label" for="student-f1-select">入学年度 </label>
-						<select class="form-select " id="student-f1-select" name="f1">
+						<label class="form-label" for="student-f1-select">入学年度 </label> <select
+							class="form-select " id="student-f1-select" name="f1">
 							<option value="0">--------</option>
 							<c:forEach var="year" items="${ent_year_set}">
 								<%-- 現在のyearと選択されていたf1が一致していた場合selectedを追記 --%>
@@ -33,8 +34,8 @@
 					</div>
 
 					<div class="col-4">
-						<label class="form-label" for="student-f2-select">クラス</label>
-						<select class="form-select " id="student-f2-select" name="f2">
+						<label class="form-label" for="student-f2-select">クラス</label> <select
+							class="form-select " id="student-f2-select" name="f2">
 							<option value="0">--------</option>
 							<c:forEach var="num" items="${class_num_set}">
 								<%-- 現在のnumと選択されていたf2が一致していた場合selectedを追記 --%>
@@ -45,15 +46,14 @@
 
 					<div class="col-2 form-check text-center">
 						<label class="form-check-label" for="student-f3-check">在学中
-							<%-- パラメーターf3が存在している場合checkedを追記 --%>
-							<input class="form-check-input" type="checkbox"
-								id="student-f3-check" name="f3" value="t"
-							<c:if test="${!empty f3}">checked</c:if> />
+							<%-- パラメーターf3が存在している場合checkedを追記 --%> <input
+							class="form-check-input" type="checkbox" id="student-f3-check"
+							name="f3" value="t" <c:if test="${!empty f3}">checked</c:if> />
 						</label>
 					</div>
 
 					<div class="col-2 text-center">
-						<button class="btn btn-secondary" id="filter-button" >絞込み</button>
+						<button class="btn btn-secondary" id="filter-button">絞込み</button>
 					</div>
 					<div class="mt-2 text-warning">${errors.get("f1")}</div>
 				</div>
@@ -68,28 +68,26 @@
 							<th>学生番号</th>
 							<th>氏名</th>
 							<th>クラス</th>
-							<th class ="text-center">在学中</th>
+							<th class="text-center">在学中</th>
 							<th></th>
 							<th></th>
 						</tr>
 
-						<c:forEach var ="student" items="${students}">
+						<c:forEach var="student" items="${students}">
 							<tr>
 								<td>${student.entyear}</td>
 								<td>${student.no}</td>
 								<td>${student.name}</td>
 								<td>${student.classNum}</td>
 
-								<td class="text-center">
-									<c:choose>
+								<td class="text-center"><c:choose>
 										<c:when test="${student.isAttend}">
 											〇
 										</c:when>
 										<c:otherwise>
 											×
 										</c:otherwise>
-									</c:choose>
-								</td>
+									</c:choose></td>
 
 								<td><a href="StudentUpdate.action?no=${student.no}">変更</a></td>
 								<td><a href="StudentDelete.action?no=${student.no}">削除</a></td>

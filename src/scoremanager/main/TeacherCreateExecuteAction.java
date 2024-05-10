@@ -28,15 +28,12 @@ public class TeacherCreateExecuteAction extends Action {
         	admin = true;
         }
 
-
         Teacher tea = new Teacher();
         tea.setId(id);
         tea.setName(name);
         tea.setSchool(teacher.getSchool());
         tea.setAdmin(admin);
         Teacher t = TeaDAO.get(id);
-
-
 
         if (t!=null) {
         	List<String>errors1=new ArrayList<>();

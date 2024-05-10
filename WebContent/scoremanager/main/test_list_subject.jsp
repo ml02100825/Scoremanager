@@ -24,8 +24,8 @@
 					<div class="col-2">科目情報</div>
 
 					<div class="col-2">
-						<label class="form-label" for="student-f1-select">入学年度 </label>
-						<select class="form-select" id="student-f1-select" name="f1">
+						<label class="form-label" for="student-f1-select">入学年度 </label> <select
+							class="form-select" id="student-f1-select" name="f1">
 							<option value="0">--------</option>
 							<c:forEach var="year" items="${ent_year_set}">
 								<option value="${year}" <c:if test="${year==f1}">selected</c:if>>${year}</option>
@@ -47,8 +47,8 @@
 					</div>
 
 					<div class="col-4" style="margin-top: -1px;">
-						<label class="form-label" for="student-f3-select">科目</label>
-						<select class="form-select" id="student-f3-select" name="f3">
+						<label class="form-label" for="student-f3-select">科目</label> <select
+							class="form-select" id="student-f3-select" name="f3">
 							<option value="0">--------</option>
 							<c:forEach var="subject" items="${subject_set}">
 								<option value="${subject.cd}"
@@ -79,9 +79,9 @@
 							<option value="${student}"
 								<c:if test="${student==f4}">selected</c:if>>${student}</option>
 						</c:forEach>
-						<input type="text" id="student-f4-select" name="f4" value="${f4}" placeholder="学生情報を入力してください"
-							maxlength="10" required style="width: 100%; height: 40px;
-							border: 1px solid #ccc; border-radius: 5px;">
+						<input type="text" id="student-f4-select" name="f4" value="${f4}"
+							placeholder="学生情報を入力してください" maxlength="10" required
+							style="width: 100%; height: 40px; border: 1px solid #ccc; border-radius: 5px;">
 						<div class="mt-2 text-warning">${errors.get("f4")}</div>
 					</div>
 

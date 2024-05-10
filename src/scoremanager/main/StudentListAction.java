@@ -50,14 +50,11 @@ public class StudentListAction extends Action{
 		entYearStr = request.getParameter("f1");
 		classNum = request.getParameter("f2");
 		isAttendStr = request.getParameter("f3");
-		System.out.print(entYearStr + classNum + isAttendStr);
-
 
 		// 在学フラグが送信されていた場合
 		if (isAttendStr != null){
 			// 在学フラグを立てる
 			isAttend = true;
-
 			// リクエストに在学フラグをセット
 			request.setAttribute("f3", isAttendStr);
 		}
@@ -110,7 +107,6 @@ public class StudentListAction extends Action{
 		// リクエストにクラス番号をセット
 		request.setAttribute("f2", classNum);
 
-
 		// リクエストに学生リストをセット
 		request.setAttribute("students", students);
 
@@ -121,13 +117,6 @@ public class StudentListAction extends Action{
 
 		// JSPにフォワード
 		request.getRequestDispatcher("studentlist.jsp").forward(request, response);
-
-
-
-
-
-
-
 	}
 
 }

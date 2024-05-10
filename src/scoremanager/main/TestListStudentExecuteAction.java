@@ -22,7 +22,7 @@ import dao.SubjectDAO;
 import dao.TestDAO;
 import dao.TestListStudentDAO;
 import tool.Action;
- 
+
 public class TestListStudentExecuteAction extends Action{
 
 	@Override
@@ -37,8 +37,6 @@ public class TestListStudentExecuteAction extends Action{
     	School school=new School();
     	Subject subject=new Subject();
     	Student student = new Student();
-
-
     	ClassNumDAO cNumDao=new ClassNumDAO();
 		SubjectDAO subjectDao = new SubjectDAO();
 		LocalDate todaysDate = LocalDate.now();

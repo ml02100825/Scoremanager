@@ -28,8 +28,6 @@ public class SubjectCreateExecuteAction extends Action {
         subject.setSchool(teacher.getSchool());
         Subject s = subDao.get(subjectCode,teacher.getSchool());
 
-
-
         if (s!=null) {
         	List<String>errors1=new ArrayList<>();
 			errors1.add("科目コードが重複しています");

@@ -34,8 +34,6 @@ public class StudentCreateAction extends Action{
 		for (int i =year -10	; i < year + 1; i++){
 			entYearSet.add(i);
 		}
-
-
 		// セッションからログインしている教員情報を取得
 		Teacher teacher = (Teacher)session.getAttribute("user");
 		List<String> list = cNumDao.filter(teacher.getSchool());
